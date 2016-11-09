@@ -1,0 +1,283 @@
+--------------- Initial state ---------------
+r1 = 3
+r2 = 10
+r3 = 23
+r4 = 8
+r5 = 4
+r6 = 26
+r7 = 25
+r8 = 5
+r9 = 0
+r10 = 1
+r11 = 2
+r12 = 13
+r13 = 16
+r14 = 18
+r15 = 17
+r16 = 14
+r17 = 12
+r18 = 15
+r19 = 19
+r20 = 22
+r21 = 21
+r22 = 20
+r23 = 29
+r24 = 27
+r25 = 6
+r26 = 9
+r27 = 7
+r28 = 24
+r29 = 30
+r30 = 29
+r31 = 28
+
+dmem_word[100] = 0
+dmem_word[101] = 19
+
+----------------- Test code -----------------
+
+  sw $0, 0($0)
+
+## Should not forward from writes to reg zero.
+  addu $0, $1, $2
+  nop
+  addu $9, $9, $0        # r9 = 0 + 0 = 0
+
+## Should not forward from writes to reg zero.
+  sll $0, $5, 3
+  nop
+  slt $9, $5, $0       # r9 = 4 < 0 = 0
+
+## Should not forward from writes to reg zero.
+  addu $0, $2, $1
+  nop
+  sw $0, 2($9)          # dmem_word[2] = 0
+
+## Should forward from writes to any other register.
+  addiu $1, $2, 4        # r1 = 10 + 4 = 14
+  nop
+  addu $16, $0, $1       # r16 = 14 + 0 = 14
+
+  slt $2, $8, $15        # r2 = 5 < 17 = 1
+  nop
+  slt $9, $4, $2         # r9 = 8 < 1 = 0
+
+  addu $3, $10, $12      # r3 = 1 + 13 = 14
+  nop
+  sw $3, 3($0)           # dmem_word[3] = 14
+
+  sll $4, $25, 1         # r4 = 6 << 1 = 12
+  nop
+  addu $17, $0, $4       # r17 = 12
+
+  slt $5, $31, $27       # r5 = 28 < 7 = 0
+  nop
+  slt $9, $10, $5        # r9 = 1 < 0 = 0
+
+  lui $6, 1              # r6 = 0x10000
+  nop
+  sw $6, 3($0)           # dmem_word[3] = 0x10000
+
+  lw $7, 100($0)
+  nop
+  addu $9, $0, $7
+
+  lw $8, 100($0)         # r8 = dmem_word[100] = 0
+  nop
+  slt $9, $9, $8         # r9 = 0 < 0 = 0
+
+  lw $9, 101($0)         # r9 = dmem_word[101] = 19
+  nop
+  sw $9, 3($0)           # dmem_word[3] = r9 = 19
+
+  lw $10, 100($0)
+  nop
+  addu $9, $0, $10
+
+  lw $11, 100($0)
+  nop
+  slt $9, $2, $11        # r9 = 1 < 0 = 0
+
+  lw $12, 100($0)
+  nop
+  sw $12, 0($0)          # dmem_word[0] = 0
+
+  lw $13, 100($0)
+  nop
+  addu $9, $0, $13
+
+  lw $14, 100($0)
+  nop
+  slt $9, $2, $14
+
+  lw $15, 100($0)
+  nop
+  sw $15, 0($0)
+
+  lw $16, 100($0)
+  nop
+  addu $9, $0, $16
+
+  lw $17, 100($0)
+  nop
+  slt $9, $2, $17
+
+  lw $18, 100($0)
+  nop
+  sw $18, 0($0)
+
+  lw $19, 100($0)
+  nop
+  addu $9, $0, $19
+
+  lw $20, 100($0)
+  nop
+  slt $9, $2, $20
+
+  lw $21, 100($0)
+  nop
+  sw $21, 0($0)
+
+  lw $22, 100($0)
+  nop
+  addu $9, $0, $22
+
+  lw $23, 100($0)
+  nop
+  slt $9, $2, $23
+
+  lw $24, 100($0)
+  nop
+  sw $24, 0($0)
+
+  lw $25, 100($0)
+  nop
+  addu $9, $0, $25
+
+  lw $26, 100($0)
+  nop
+  slt $9, $2, $26
+
+  lw $27, 100($0)
+  nop
+  sw $27, 0($0)
+
+  lw $28, 100($0)
+  nop
+  addu $9, $0, $28
+
+  lw $29, 100($0)
+  nop
+  slt $9, $2, $29
+
+  lw $30, 100($0)
+  nop
+  sw $30, 0($0)
+
+  lw $31, 100($0)
+  nop
+  slt $9, $2, $31
+
+  jal jal_ret_addr
+jal_ret_addr:
+  nop
+  sw $31, 0($0)
+
+test_success:
+  sw $0, 1($0)
+  j .
+  nop
+  nop
+  nop
+  nop
+
+test_fail:
+  sw $0, 0($0)
+  j .
+
+---------- Expected state updates -----------
+
+dmem_word[0] = 0
+
+r9 = 0
+r9 = 0
+dmem_word[2] = 0
+
+r1 = 14
+r16 = 14
+
+r2 = 1
+r9 = 0
+
+r3 = 14
+dmem_word[3] = 14
+
+r4 = 12
+r17 = 12
+
+r5 = 0
+r9 = 0
+
+r6 = 0x10000
+dmem_word[3] = 0x10000
+
+r7 = 0
+r9 = 0
+
+r8 = 0
+r9 = 0
+
+r9 = 19
+dmem_word[3] = 19
+
+r10 = 0
+r9 = 0
+r11 = 0
+r9 = 0
+r12 = 0
+dmem_word[0] = 0
+r13 = 0
+r9 = 0
+r14 = 0
+r9 = 0
+r15 = 0
+dmem_word[0] = 0
+r16 = 0
+r9 = 0
+r17 = 0
+r9 = 0
+r18 = 0
+dmem_word[0] = 0
+r19 = 0
+r9 = 0
+r20 = 0
+r9 = 0
+r21 = 0
+dmem_word[0] = 0
+r22 = 0
+r9 = 0
+r23 = 0
+r9 = 0
+r24 = 0
+dmem_word[0] = 0
+r25 = 0
+r9 = 0
+r26 = 0
+r9 = 0
+r27 = 0
+dmem_word[0] = 0
+r28 = 0
+r9 = 0
+r29 = 0
+r9 = 0
+r30 = 0
+dmem_word[0] = 0
+r31 = 0
+r9 = 0
+r31 = 0x1A0
+dmem_word[0] = 0x1A0
+
+dmem_word[1] = 0
+
+------------ Timeout cycle count ------------
+1290

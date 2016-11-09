@@ -1,0 +1,25 @@
+--------------- Initial state ---------------
+r1 = 1
+r2 = 0xffffffff
+r3 = 0x12345678
+r4 = 0xedcba987
+
+----------------- Test code -----------------
+sw $1, 0($0)
+nop
+nop
+sw $2, 0($0)
+sw $3, 0($0)
+nop
+nop
+sw $4, 0($0)
+
+---------- Expected state updates -----------
+
+dmem_word[0] = 1
+dmem_word[0] = 0xffffffff
+dmem_word[0] = 0x12345678
+dmem_word[0] = 0xedcba987
+
+------------ Timeout cycle count ------------
+260

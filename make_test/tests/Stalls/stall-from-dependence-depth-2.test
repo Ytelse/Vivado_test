@@ -1,0 +1,291 @@
+--------------- Initial state ---------------
+
+r1 = 1
+r2 = 2
+
+dmem_word[0] = 1
+dmem_word[1] = 2
+
+dmem_word[10] = 0x58
+dmem_word[11] = 0xA8
+dmem_word[12] = 0x80
+
+dmem_word[200] = 27
+
+----------------- Test code -----------------
+  addiu $31, 0x13
+
+.macro pad
+  # Pad with a load-word instruction, since
+  # this may trigger some stall logic errors.
+  lw $30, 200($0)
+.endm
+  
+id_lane_1_dst_test:
+.align 3
+  lw $3, 0($0)
+  nop
+  beq $3, $0, test_fail
+
+.align 3
+  lw $4, 1($0)
+  nop
+  beq $0, $4, test_fail
+
+.align 3
+  lw $5, 0($0)
+  nop
+  bne $5, $1, test_fail
+
+.align 3
+  lw $6, 1($0)
+  nop
+  bne $2, $6, test_fail
+
+.align 3
+  lw $7, 10($0)          # r7 = dmem_word[10] = 0x58 = id_lane_2_dst_test
+  nop
+  jr $7
+
+id_lane_2_dst_test:
+.align 3
+  nop
+  lw $8, 0($0)
+  pad
+  beq $8, $0, test_fail
+
+.align 3
+  nop
+  lw $9, 1($0)
+  pad
+  beq $0, $9, test_fail
+
+.align 3
+  nop
+  lw $10, 0($0)
+  pad
+  bne $10, $1, test_fail
+
+.align 3
+  nop
+  lw $11, 1($0)
+  pad
+  bne $2, $11, test_fail
+
+.align 3
+  nop
+  lw $12, 11($0)          # r12 = dmem_word[11] = 0xA8 = ex_lane_1_dst_test
+  pad
+  jr $12
+
+ex_lane_1_dst_test:
+.align 3
+  lw $13, 0($0)
+  nop
+  addu $14, $13, $0
+
+.align 3
+  lw $15, 1($0)
+  nop
+  addu $16, $15, $0
+  
+
+.align 3
+  lw $17, 0($0)
+  nop
+  slt $18, $17, $1
+
+.align 3
+  lw $19, 0($0)
+  nop
+  slt $20, $0, $19
+
+.align 3
+  lw $21, 1($0)
+  nop
+  addiu $22, $21, 0
+
+.align 3
+  lw $23, 1($0)
+  nop
+  sll $24, $23, 0
+
+.align 3
+  lw $25, 0($0)
+  nop
+  lw $26, 0($25)
+
+.align 3
+  lw $27, 0($0)
+  nop
+  sw $0, 100($27)
+
+.align 3
+  lw $28, 0($0)
+  nop
+  sw $28, 100($0)
+
+ex_lane_2_dst_test:
+.align 3
+  nop
+  lw $13, 1($0)
+  pad
+  addu $14, $13, $0
+
+.align 3
+  nop
+  lw $15, 0($0)
+  pad
+  addu $16, $15, $0
+  
+.align 3
+  nop
+  lw $17, 1($0)
+  pad
+  slt $18, $17, $2
+
+.align 3
+  nop
+  lw $19, 1($0)
+  pad
+  slt $20, $1, $19
+
+.align 3
+  nop
+  lw $21, 0($0)
+  pad
+  addiu $22, $21, 0
+
+.align 3
+  nop
+  lw $23, 0($0)
+  pad
+  sll $24, $23, 0
+
+.align 3
+  nop
+  lw $26, 0($0)
+  nop
+  lw $25, 0($26)
+
+.align 3
+  nop
+  lw $27, 1($0)
+  nop
+  sw $0, 100($27)
+
+.align 3
+  nop
+  lw $28, 1($0)
+  nop
+  sw $28, 100($0)
+
+test_success:
+  j .
+  pad
+  pad
+  pad
+  pad
+  pad
+  pad
+  pad
+  pad
+
+test_fail:
+  addiu $31, $0, 312
+  sw $31, 0($0)
+  j test_fail
+
+
+
+---------- Expected state updates -----------
+
+r31 = 0x13
+
+r3 = 1
+
+r4 = 2
+
+r5 = 1
+
+r6 = 2
+
+r7 = 0x58
+
+r8 = 1
+r30 = 27
+
+r9 = 2
+r30 = 27
+
+r10 = 1
+r30 = 27
+
+r11 = 2
+r30 = 27
+
+r12 = 0xA8
+r30 = 27
+
+r13 = 1
+r14 = 1
+
+r15 = 2
+r16 = 2
+
+r17 = 1
+r18 = 0
+
+r19 = 1
+r20 = 1
+
+r21 = 2
+r22 = 2
+
+r23 = 2
+r24 = 2
+
+r25 = 1
+r26 = 2
+
+r27 = 1
+dmem_word[101] = 0
+
+r28 = 1
+dmem_word[100] = 1
+
+r13 = 2
+r30 = 27
+r14 = 2
+
+r15 = 1
+r30 = 27
+r16 = 1
+
+r17 = 2
+r30 = 27
+r18 = 0
+
+r19 = 2
+r30 = 27
+r20 = 1
+
+r21 = 1
+r30 = 27
+r22 = 1
+
+r23 = 1
+r30 = 27
+r24 = 1
+
+r26 = 1
+r25 = 2
+
+r27 = 2
+dmem_word[102] = 0
+
+r28 = 2
+dmem_word[100] = 2
+
+------------ Timeout cycle count ------------
+1000

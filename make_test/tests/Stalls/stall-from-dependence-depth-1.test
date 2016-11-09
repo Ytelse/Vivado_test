@@ -1,0 +1,269 @@
+--------------- Initial state ---------------
+
+r1 = 0
+r2 = 0
+r3 = 0
+r4 = 0
+r5 = 0xFC0
+r6 = 0
+r7 = 0
+r8 = 0
+r9 = 0
+r10 = 0
+r11 = 0
+r12 = 0
+r13 = 0
+r14 = 0
+r15 = 0
+r16 = 0
+r17 = 0
+r18 = 0
+r19 = 0
+
+dmem_word[0] = 100
+dmem_word[1] = 161
+dmem_word[2] = 222
+dmem_word[3] = 283
+dmem_word[4] = 344
+dmem_word[5] = 405
+dmem_word[6] = 466
+dmem_word[7] = 527
+dmem_word[8] = 588
+dmem_word[9] = 649
+dmem_word[10] = 710
+
+dmem_word[1007] = 0x2C
+dmem_word[1008] = 0xE8
+
+dmem_word[588] = 9999
+
+
+----------------- Test code -----------------
+  addiu $31, $0, 1
+
+  # beq op 1
+  lw $1, 0($0)
+  beq $1, $2, test_fail
+
+  # beq op 2
+  lw $2, 1($0)
+  beq $3, $2, test_fail
+
+  # bne op 1
+  lw $3, 1($0)
+  bne $3, $2, test_fail
+
+  # bne op 2
+  lw $4, 0($0)
+  bne $1, $4, test_fail
+
+  # jr op 1
+  lw $5, 1007($0)           # r5 = dmem_word[1007] = jr_target
+  jr $5
+
+jr_target:
+  # addu op 1
+  lw $6, 2($0)
+  addu $7, $6, $0
+
+  # addu op 2
+  lw $8, 3($0)
+  addu $7, $0, $8
+
+  # addiu op 1
+  lw $9, 4($0)
+  addiu $7, $9, 0
+
+  # slt op 1
+  lw $10, 5($0)
+  slt $11, $10, $1
+
+  # slt op 2
+  lw $12, 6($0)
+  slt $13, $1, $12
+
+  # sll op 1
+  lw $14, 7($0)
+  sll $15, $14, 1
+
+  # lw op 1 (addr. calc)
+  lw $16, 8($0)
+  lw $17, 0($16)
+
+  # sw op 1 (addr. calc)
+  lw $18, 9($0)
+  sw $0, 0($18)
+
+  # sw op 2 (src value)
+  lw $19, 10($0)
+  sw $19, 10($0)
+
+## Reset register values to the same as initial ones.
+   addiu $1, $0, 0
+   addiu $2, $0, 0
+   addiu $3, $0, 0
+   addiu $4, $0, 0
+   addiu $5, $0, 0xFC0
+   addiu $6, $0, 0
+   addiu $7, $0, 0
+   addiu $8, $0, 0
+   addiu $9, $0, 0
+   addiu $10, $0, 0
+   addiu $11, $0, 0
+   addiu $12, $0, 0
+   addiu $13, $0, 0
+   addiu $14, $0, 0
+   addiu $15, $0, 0
+   addiu $16, $0, 0
+   addiu $17, $0, 0
+   addiu $18, $0, 0
+   addiu $19, $0, 0
+
+## Same test, alternate instruction alignment
+## First test was unaligned due to initial addiu-instruction -
+## so this test starts with aligned bundles.
+.align 3
+  # beq op 1
+  lw $1, 0($0)
+  beq $1, $2, test_fail
+
+  # beq op 2
+  lw $2, 1($0)
+  beq $3, $2, test_fail
+
+  # bne op 1
+  lw $3, 1($0)
+  bne $3, $2, test_fail
+
+  # bne op 2
+  lw $4, 0($0)
+  bne $1, $4, test_fail
+
+  # jr op 1
+  lw $5, 1008($0)           # r5 = dmem_word[1008] = jr_target_2
+  jr $5
+
+jr_target_2:
+  # addu op 1
+  lw $6, 2($0)
+  addu $7, $6, $0
+
+  # addu op 2
+  lw $8, 3($0)
+  addu $7, $0, $8
+
+  # addiu op 1
+  lw $9, 4($0)
+  addiu $7, $9, 0
+
+  # slt op 1
+  lw $10, 5($0)
+  slt $11, $10, $1
+
+  # slt op 2
+  lw $12, 6($0)
+  slt $13, $1, $12
+
+  # sll op 1
+  lw $14, 7($0)
+  sll $15, $14, 1
+
+  # lw op 1 (addr. calc)
+  lw $16, 8($0)
+  lw $17, 0($16)
+
+  # sw op 1 (addr. calc)
+  lw $18, 9($0)
+  sw $0, 0($18)
+
+  # sw op 2 (src value)
+  lw $19, 10($0)
+  sw $19, 10($0)
+
+test_success:
+  j .
+  nop
+  nop
+  nop
+  nop
+
+.section .final_16_instructions
+test_fail:
+  sw $0, 0xB00($0)
+  j test_fail
+
+
+---------- Expected state updates -----------
+
+r31 = 1
+
+r1 = 100
+r2 = 161
+r3 = 161
+r4 = 100
+r5 = 0x2C
+r6 = 222
+r7 = 222
+r8 = 283
+r7 = 283
+r9 = 344
+r7 = 344
+r10 = 405
+r11 = 0
+r12 = 466
+r13 = 1
+r14 = 527
+r15 = 1054
+r16 = 588
+r17 = 9999
+r18 = 649
+dmem_word[649] = 0
+r19 = 710
+dmem_word[10] = 710
+
+r1 = 0
+r2 = 0
+r3 = 0
+r4 = 0
+r5 = 0xFC0
+r6 = 0
+r7 = 0
+r8 = 0
+r9 = 0
+r10 = 0
+r11 = 0
+r12 = 0
+r13 = 0
+r14 = 0
+r15 = 0
+r16 = 0
+r17 = 0
+r18 = 0
+r19 = 0
+
+r1 = 100
+r2 = 161
+r3 = 161
+r4 = 100
+r5 = 0xE8
+r6 = 222
+r7 = 222
+r8 = 283
+r7 = 283
+r9 = 344
+r7 = 344
+r10 = 405
+r11 = 0
+r12 = 466
+r13 = 1
+r14 = 527
+r15 = 1054
+r16 = 588
+r17 = 9999
+r18 = 649
+dmem_word[649] = 0
+r19 = 710
+dmem_word[10] = 710
+
+------------ Timeout cycle count ------------
+640

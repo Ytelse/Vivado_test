@@ -1,0 +1,241 @@
+--------------- Initial state ---------------
+r1 = 0x8
+r2 = 0x14
+r3 = 0x20
+r4 = 0x2C
+r5 = 0x38
+r6 = 0x44
+r7 = 0x50
+r8 = 0x5C
+r9 = 0x68
+r10 = 0x74
+r11 = 0x80
+r12 = 0x8C
+r13 = 0x98
+r14 = 0xA4
+r15 = 0xB0
+r16 = 0xBC
+r17 = 0xC8
+r18 = 0xD4
+r19 = 0xE0
+r20 = 0xEC
+r21 = 0xF8
+r22 = 0x104
+r23 = 0x110
+r24 = 0x11C
+r25 = 0x128
+r26 = 0x134
+r27 = 0x140
+r28 = 0x14C
+r29 = 0x158
+r30 = 0x164
+r31 = 0x170
+
+dmem_word[0] = 0
+
+----------------- Test code -----------------
+
+.macro should_execute
+       addu $1, $0, $0
+.endm
+.macro should_not_execute
+       addu $2, $0, $0
+.endm
+
+  jr $1
+  should_not_execute
+1:
+  should_execute
+
+  jr $2
+  should_not_execute
+1:
+  should_execute
+
+  jr $3
+  should_not_execute
+1:
+  should_execute
+
+  jr $4
+  should_not_execute
+1:
+  should_execute
+
+  jr $5
+  should_not_execute
+1:
+  should_execute
+
+  jr $6
+  should_not_execute
+1:
+  should_execute
+
+  jr $7
+  should_not_execute
+1:
+  should_execute
+
+  jr $8
+  should_not_execute
+1:
+  should_execute
+
+  jr $9
+  should_not_execute
+1:
+  should_execute
+
+  jr $10
+  should_not_execute
+1:
+  should_execute
+
+  jr $11
+  should_not_execute
+1:
+  should_execute
+
+  jr $12
+  should_not_execute
+1:
+  should_execute
+
+  jr $13
+  should_not_execute
+1:
+  should_execute
+
+  jr $14
+  should_not_execute
+1:
+  should_execute
+
+  jr $15
+  should_not_execute
+1:
+  should_execute
+
+  jr $16
+  should_not_execute
+1:
+  should_execute
+
+  jr $17
+  should_not_execute
+1:
+  should_execute
+
+  jr $18
+  should_not_execute
+1:
+  should_execute
+
+  jr $19
+  should_not_execute
+1:
+  should_execute
+
+  jr $20
+  should_not_execute
+1:
+  should_execute
+
+  jr $21
+  should_not_execute
+1:
+  should_execute
+
+  jr $22
+  should_not_execute
+1:
+  should_execute
+
+  jr $23
+  should_not_execute
+1:
+  should_execute
+
+  jr $24
+  should_not_execute
+1:
+  should_execute
+
+  jr $25
+  should_not_execute
+1:
+  should_execute
+
+  jr $26
+  should_not_execute
+1:
+  should_execute
+
+  jr $27
+  should_not_execute
+1:
+  should_execute
+
+  jr $28
+  should_not_execute
+1:
+  should_execute
+
+  jr $29
+  should_not_execute
+1:
+  should_execute
+
+  jr $30
+  should_not_execute
+1:
+  should_execute
+
+  jr $31
+  should_not_execute
+1:
+  should_execute
+
+  addiu $31, $0, test_complete
+test_complete:
+  jr $31
+
+
+---------- Expected state updates -----------
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 0x178
+
+------------ Timeout cycle count ------------
+860

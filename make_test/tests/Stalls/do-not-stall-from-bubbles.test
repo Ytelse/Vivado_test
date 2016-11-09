@@ -1,0 +1,49 @@
+--------------- Initial state ---------------
+dmem_word[0] = 1
+dmem_word[1] = 2
+dmem_word[2] = 3
+dmem_word[3] = 4
+dmem_word[4] = 5
+dmem_word[5] = 6
+dmem_word[6] = 7
+dmem_word[7] = 8
+dmem_word[8] = 9
+dmem_word[9] = 10
+dmem_word[10] = 11
+dmem_word[11] = 12
+dmem_word[12] = 13
+dmem_word[13] = 14
+dmem_word[14] = 15
+dmem_word[15] = 16
+dmem_word[16] = 17
+dmem_word[17] = 18
+
+----------------- Test code -----------------
+
+lw $1, 0($1)
+lw $1, 0($1)
+lw $1, 0($1)
+lw $1, 0($1)
+lw $1, 0($1)
+lw $1, 0($1)
+lw $1, 0($1)
+lw $1, 0($1)
+lw $1, 0($1)
+
+test_complete:
+  j .
+
+---------- Expected state updates -----------
+
+r1 = 1
+r1 = 2
+r1 = 3
+r1 = 4
+r1 = 5
+r1 = 6
+r1 = 7
+r1 = 8
+r1 = 9
+
+------------ Timeout cycle count ------------
+400

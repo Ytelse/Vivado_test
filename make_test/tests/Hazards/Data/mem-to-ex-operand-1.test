@@ -1,0 +1,269 @@
+--------------- Initial state ---------------
+r1 = 3
+r2 = 10
+r3 = 23
+r4 = 8
+r5 = 4
+r6 = 26
+r7 = 25
+r8 = 5
+r9 = 0
+r10 = 1
+r11 = 2
+r12 = 13
+r13 = 16
+r14 = 18
+r15 = 17
+r16 = 14
+r17 = 12
+r18 = 15
+r19 = 19
+r20 = 22
+r21 = 21
+r22 = 20
+r23 = 29
+r24 = 27
+r25 = 6
+r26 = 9
+r27 = 7
+r28 = 24
+r29 = 30
+r30 = 29
+r31 = 28
+
+dmem_word[0] = 13
+dmem_word[1] = 100
+dmem_word[2] = 0
+
+----------------- Test code -----------------
+
+  sw $0, 3($0)
+
+## Should not forward from writes to reg zero.
+  addu $0, $1, $2
+  addu $9, $0, $9        # r9 = 0 + 0 = 0
+
+## Should not forward from writes to reg zero.
+  addiu $0, $1, 5
+  addiu $9, $0, 0        # r9 = 0 + 0 = 0
+
+## Should not forward from writes to reg zero.
+   sll $0, $5, 3
+   sll $9, $0, 2         # r9 = 0 << 3 = 0
+
+## Should not forward from writes to reg zero.
+   sll $0, $5, 3
+   slt $10, $0, $5       # r10 = 0 < 4 = 1
+
+## Should not forward from writes to reg zero.
+   slt $0, $5, $4
+   lw $12, 0($0)         # r12 = dmem_word[0] = 13
+
+## Should not forward from writes to reg zero.
+   addu $0, $2, $1
+   sw $9, 2($0)          # dmem_word[2] = r9 = 0
+
+## Should forward from writes to any other register.
+  addiu $1, $2, 4        # r1 = 10 + 4 = 14
+  addu $16, $1, $0       # r16 = 14 + 0 = 14
+
+  slt $2, $8, $15        # r2 = 5 < 17 = 1
+  addiu $2, $2, 0       # r10 = 1 + 0 = 1
+
+  addu $3, $10, $12      # r3 = 1 + 13 = 14
+  slt $10, $3, $22       # r10 = 14 < 20 = 1
+
+  lui $4, 1              # r4 = 0x10000
+  sll $28, $4, 1         # r28 = 0x10000 << 1 = 0x20000
+
+  slt $5, $27, $31       # r5 = 7 < 28 = 1
+  lw $5, 0($5)           # r5 = dmem_word[1] = 100
+
+  sll $6, $0, 1         # r6 = 0 << 1 = 0
+  sw $0, 3($6)           # dmem_word[3] = 0
+
+  addu $7, $0, $0        # r7 = 0
+  addu $7, $7, $0        # r7 = 0 + 0 = 0
+
+  addu $8, $17, $27      # r8 = 12 + 7 = 19
+  addiu $19, $8, 0       # r19 = 19
+
+  addu $9, $31, $31     # r9 = 28 + 28 = 56
+  slt $9, $9, $16       # r9 = 56 < 14 = 0
+
+  addu $10, $0, $0
+  sll $9, $10, 0
+
+  addu $11, $0, $0
+  lw $1, 0($11)          # r1 = 13
+
+  addu $12, $0, $0
+  sw $0, 2($12)
+
+  addu $13, $0, $0
+  addu $9, $13, $0
+
+  addu $14, $0, $0
+  addiu $9, $14, 0
+
+  addu $15, $0, $0
+  slt $10, $15, $25      # r10 = 0 < 6 = 1
+
+  addu $16, $0, $0
+  sll $9, $16, 0
+
+  addu $17, $0, $0
+  lw $1, 0($17)          # r1 = 13
+
+  addu $18, $0, $0
+  sw $0, 2($18)
+
+  addu $19, $0, $0
+  addu $9, $19, $0
+
+  addu $20, $0, $0
+  addiu $9, $20, 0
+
+  addu $21, $0, $0
+  slt $10, $21, $27      # r10 = 0 < 7 = 1
+
+  addu $22, $0, $0
+  sll $9, $22, 0
+
+  addu $23, $0, $0
+  lw $1, 0($23)          # r1 = 13
+
+  addu $24, $0, $0
+  sw $0, 2($24)
+
+  addu $25, $0, $0
+  addu $9, $25, $0
+
+  addu $26, $0, $0
+  addiu $9, $26, 0
+
+  addu $27, $0, $0
+  slt $10, $27, $10      # r10 = 0 < 1 = 1
+
+  addu $28, $0, $0
+  sll $9, $28, 0
+
+  addu $29, $0, $0
+  lw $1, 0($29)          # r1 = 13
+
+  addu $30, $0, $0
+  sw $0, 2($30) 
+
+  addu $31, $0, $0
+  addu $9, $31, $0
+
+  jal jal_ret_addr
+jal_ret_addr:
+  addiu $9, $31, 0       # r9 = jal_ret_addr
+
+test_success:
+### Add an extra nop to separate the previous addiu from the following sw...
+### if they are in the same bundle, then the sw will be registered in the
+### test bench before the add (since a store in lane 2 will happen before
+### a write-back in lane 1!)
+  nop
+  sw $0, 1($0)
+  j .
+  nop
+  nop
+  nop
+  nop
+
+test_fail:
+  sw $0, 0($0)
+  j .
+
+---------- Expected state updates -----------
+
+dmem_word[3] = 0
+
+r9 = 0
+r9 = 0
+r9 = 0
+r10 = 1
+r12 = 13
+dmem_word[2] = 0
+
+r1 = 14
+r16 = 14
+
+r2 = 1
+r2 = 1
+
+r3 = 14
+r10 = 1
+
+r4 = 0x10000
+r28 = 0x20000
+
+r5 = 1
+r5 = 100
+
+r6 = 0
+dmem_word[3] = 0
+
+r7 = 0
+r7 = 0
+
+r8 = 19
+r19 = 19
+
+r9 = 56
+r9 = 0
+
+r10 = 0
+r9 = 0
+r11 = 0
+r1 = 13
+r12 = 0
+dmem_word[2] = 0
+r13 = 0
+r9 = 0
+r14 = 0
+r9 = 0
+r15 = 0
+r10 = 1
+r16 = 0
+r9 = 0
+r17 = 0
+r1 = 13
+r18 = 0
+dmem_word[2] = 0
+r19 = 0
+r9 = 0
+r20 = 0
+r9 = 0
+r21 = 0
+r10 = 1
+r22 = 0
+r9 = 0
+r23 = 0
+r1 = 13
+r24 = 0
+dmem_word[2] = 0
+r25 = 0
+r9 = 0
+r26 = 0
+r9 = 0
+r27 = 0
+r10 = 1
+r28 = 0
+r9 = 0
+r29 = 0
+r1 = 13
+r30 = 0
+dmem_word[2] = 0
+r31 = 0
+r9 = 0
+r31 = 0x130
+r9 = 0x130
+
+dmem_word[1] = 0
+
+------------ Timeout cycle count ------------
+1000

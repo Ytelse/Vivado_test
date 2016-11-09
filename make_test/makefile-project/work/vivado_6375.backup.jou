@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Thu Oct 27 16:11:06 2016
+# Process ID: 6375
+# Current directory: /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work
+# Command line: vivado -tempDir /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work -mode batch -source /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/buildscripts/synthesize.tcl
+# Log file: /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/vivado.log
+# Journal file: /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/vivado.jou
+#-----------------------------------------------------------
+source /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/buildscripts/synthesize.tcl
+latchCheck

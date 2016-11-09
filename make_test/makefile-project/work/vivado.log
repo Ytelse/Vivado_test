@@ -1,0 +1,69 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Thu Oct 27 16:12:11 2016
+# Process ID: 7458
+# Current directory: /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work
+# Command line: vivado -tempDir /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work -mode batch /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/route.dcp -source /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/buildscripts/bitgen.tcl
+# Log file: /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/vivado.log
+# Journal file: /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/vivado.jou
+#-----------------------------------------------------------
+open_checkpoint /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/route.dcp
+Command: open_checkpoint /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/route.dcp
+
+Starting open_checkpoint Task
+
+Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.02 . Memory (MB): peak = 957.621 ; gain = 0.000 ; free physical = 12234 ; free virtual = 30873
+INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-479] Netlist was created with Vivado 2016.2
+INFO: [Device 21-403] Loading part xc7a35tcsg324-1
+INFO: [Project 1-570] Preparing netlist for logic optimization
+Parsing XDC File [/home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/.Xil_ulrichji/Vivado-7458-dmlab05/dcp/sw_btn_led.xdc]
+Finished Parsing XDC File [/home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/.Xil_ulrichji/Vivado-7458-dmlab05/dcp/sw_btn_led.xdc]
+Reading XDEF placement.
+Reading placer database...
+Reading XDEF routing.
+Read XDEF File: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.09 . Memory (MB): peak = 1149.227 ; gain = 0.000 ; free physical = 12053 ; free virtual = 30692
+Restored from archive | CPU: 0.020000 secs | Memory: 0.024933 MB |
+Finished XDEF File Restore: Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.09 . Memory (MB): peak = 1149.227 ; gain = 0.000 ; free physical = 12053 ; free virtual = 30692
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+INFO: [Project 1-604] Checkpoint was created with Vivado v2016.2 (64-bit) build 1577090
+source /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/buildscripts/bitgen.tcl
+# write_bitstream -force -bin_file $env(BITFILE)
+Attempting to get a license for feature 'Implementation' and/or device 'xc7a35t'
+INFO: [Common 17-349] Got license for feature 'Implementation' and/or device 'xc7a35t'
+Running DRC as a precondition to command write_bitstream
+INFO: [DRC 23-27] Running DRC with 8 threads
+WARNING: [DRC 23-20] Rule violation (CFGBVS-1) Missing CFGBVS and CONFIG_VOLTAGE Design Properties - Neither the CFGBVS nor CONFIG_VOLTAGE voltage property is set in the current_design.  Configuration bank voltage select (CFGBVS) must be set to VCCO or GND, and CONFIG_VOLTAGE must be set to the correct configuration voltage, in order to determine the I/O voltage support for the pins in bank 0.  It is suggested to specify these either using the 'Edit Device Properties' function in the GUI or directly in the XDC file using the following syntax:
+
+ set_property CFGBVS value1 [current_design]
+ #where value1 is either VCCO or GND
+
+ set_property CONFIG_VOLTAGE value2 [current_design]
+ #where value2 is the voltage provided to configuration bank 0
+
+Refer to the device configuration user guide for more information.
+INFO: [Vivado 12-3199] DRC finished with 0 Errors, 1 Warnings
+INFO: [Vivado 12-3200] Please refer to the DRC report (report_drc) for more information.
+INFO: [Designutils 20-2272] Running write_bitstream with 8 threads.
+Loading data files...
+Loading site data...
+Loading route data...
+Processing options...
+Creating bitmap...
+Creating bitstream...
+Writing bitstream /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/Exercise-1-Top.bit...
+Writing bitstream /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/Exercise-1-Top.bin...
+INFO: [Vivado 12-1842] Bitgen Completed Successfully.
+INFO: [Project 1-120] WebTalk data collection is mandatory when using a WebPACK part without a full Vivado license. To see the specific WebTalk data collected for your design, open the usage_statistics_webtalk.html or usage_statistics_webtalk.xml file in the implementation directory.
+INFO: [Common 17-186] '/home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/work/usage_statistics_webtalk.xml' has been successfully sent to Xilinx on Thu Oct 27 16:12:27 2016. For additional details about this file, please refer to the WebTalk help file at /opt/Xilinx/Vivado/2016.2/doc/webtalk_introduction.html.
+INFO: [Common 17-83] Releasing license: Implementation
+write_bitstream: Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1596.992 ; gain = 447.766 ; free physical = 11693 ; free virtual = 30331
+# report_drc -file $env(DRC_REPORT)
+INFO: [DRC 23-27] Running DRC with 8 threads
+INFO: [Coretcl 2-168] The results of DRC are in file /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/reports/bitgen_design_rule_check.rpt.
+INFO: [Common 17-206] Exiting Vivado at Thu Oct 27 16:12:27 2016...

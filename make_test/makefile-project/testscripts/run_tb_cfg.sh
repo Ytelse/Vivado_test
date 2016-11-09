@@ -1,0 +1,1 @@
+../../mips-proc-exercises/sim-tests/scripts/run_tb_cfg.sh

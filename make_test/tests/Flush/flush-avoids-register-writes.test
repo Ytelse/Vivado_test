@@ -1,0 +1,151 @@
+--------------- Initial state ---------------
+dmem_word[0] = 0
+----------------- Test code -----------------
+
+  addu $1, $0, $0
+  nop
+  nop
+  nop
+  nop
+  beq $1, $1, 1f
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+
+1:
+  addiu $2, $0, 0
+  nop
+  nop
+  nop
+  nop
+  beq $2, $1, 1f
+  slt $2, $0, $0
+  slt $2, $0, $0
+  slt $2, $0, $0
+  slt $2, $0, $0
+  slt $2, $0, $0
+  slt $2, $0, $0
+
+1:
+  slt $3, $1, $2
+  nop
+  nop
+  nop
+  nop
+  beq $1, $3, 1f
+  sll $2, $0, 0
+  sll $2, $0, 0
+  sll $2, $0, 0
+  sll $2, $0, 0
+  sll $2, $0, 0
+  sll $2, $0, 0
+
+1:
+  addiu $4, $0, 2
+  nop
+  nop
+  nop
+  nop
+  bne $1, $4, 1f
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+
+1:
+  sll $5, $4, 1
+  nop
+  nop
+  nop
+  nop
+  bne $4, $5, 1f
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+
+1:
+  addiu $6, $0, 1f
+  nop
+  nop
+  nop
+  nop
+  jr $6
+  jal 1b
+  jal 1b
+  jal 1b
+  jal 1b
+  jal 1b
+  jal 1b
+
+1:
+  jal 1f
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+1:
+  j test_complete
+  lui $2, 7
+  lui $2, 7
+  lui $2, 7
+  lui $2, 7
+  lui $2, 7
+  lui $2, 7
+
+test_complete:
+  j .
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+
+
+.section .final_16_instructions
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  
+
+---------- Expected state updates -----------
+r1 = 0
+
+r2 = 0
+
+r3 = 0
+
+r4 = 2
+
+r5 = 4
+
+r6 = 0x120
+
+r31 = 0x124
+
+------------ Timeout cycle count ------------
+650

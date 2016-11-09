@@ -1,0 +1,105 @@
+--------------- Initial state ---------------
+r1 = 1
+r2 = 30
+r3 = 31
+r4 = 499
+r5 = 0x3fe
+r6 = 0x3ff
+
+dmem_word[0] = 100
+dmem_word[1] = 150
+dmem_word[2] = 200
+
+dmem_word[1023] = 250
+
+dmem_word[264] = 300
+dmem_word[265] = 350
+dmem_word[733] = 400
+
+dmem_word[286] = 450
+dmem_word[287] = 500
+dmem_word[755] = 550
+
+dmem_word[270] = 600
+dmem_word[271] = 650
+dmem_word[739] = 700
+
+dmem_word[511] = 750
+
+----------------- Test code -----------------
+
+lw $31, 0($0)
+nop
+lw $31, 1($0)
+nop
+lw $31, 0($1)
+nop
+lw $31, 1($1)
+nop
+
+lw $31, 1023($0)
+nop
+lw $31, 1022($1)
+nop
+lw $31, 0($6)
+nop
+lw $31, 1($5)
+nop
+
+lw $31, 0xea($2)
+nop
+lw $31, 0xea($3)
+nop
+lw $31, 0xea($4)
+nop
+nop
+
+lw $31, 0x100($2)
+nop
+lw $31, 0x100($3)
+nop
+lw $31, 0x100($4)
+nop
+
+lw $31, 0xF0($2)
+nop
+lw $31, 0xF0($3)
+nop
+lw $31, 0xF0($4)
+nop
+
+lw $31, 0x1e0($3)
+nop
+lw $31, 0x3e0($3)
+nop
+
+
+---------- Expected state updates -----------
+
+r31 = 100
+r31 = 150
+r31 = 150
+r31 = 200
+
+r31 = 250
+r31 = 250
+r31 = 250
+r31 = 250
+
+r31 = 300
+r31 = 350
+r31 = 400
+
+r31 = 450
+r31 = 500
+r31 = 550
+
+r31 = 600
+r31 = 650
+r31 = 700
+
+r31 = 750
+r31 = 250
+
+------------ Timeout cycle count ------------
+420

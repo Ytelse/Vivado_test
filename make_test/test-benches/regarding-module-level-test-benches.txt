@@ -1,0 +1,6 @@
+In exercises 1 and 2, the hand-out does not include any per-module test benches
+since you are free to determine for yourself how to decompose your design into
+modules. If, however, you wish to add per-module test benches in your design to
+check the operation of smaller parts of your design, you are of course free to
+do so. If you add the test benches in this folder, then the Makefile project
+will be able to run them as in exercise 0.

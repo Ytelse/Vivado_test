@@ -1,0 +1,886 @@
+--------------- Initial state ---------------
+r1 = 1
+----------------- Test code -----------------
+
+.macro should_execute
+       addiu $21, $0, 1
+.endm
+
+.macro should_not_execute
+       addiu $22, $0, 2
+.endm
+
+## Test first that should_execute and should_not_execute work
+  should_execute
+  should_not_execute
+
+#######################################
+### beq tests below
+
+## beq skips beq
+  beq $0, $0, 1f
+  beq $0, $0, 2f
+  beq $0, $0, 3f
+  beq $0, $0, 4f
+  beq $0, $0, 5f
+  beq $0, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## beq skips bne
+  beq $0, $0, 1f
+  bne $1, $0, 2f
+  bne $1, $0, 3f
+  bne $1, $0, 4f
+  bne $1, $0, 5f
+  bne $1, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## beq skips j 
+  beq $0, $0, 1f
+  j 2f
+  j 3f
+  j 4f
+  j 5f
+  j 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## beq skips jal
+  beq $0, $0, 1f
+  jal 2f
+  jal 3f
+  jal 4f
+  jal 5f
+  jal 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## beq skips jr
+  addiu $2, $0, 2f
+  addiu $3, $0, 3f
+  addiu $4, $0, 4f
+  addiu $5, $0, 5f
+  addiu $6, $0, 6f
+  beq $0, $0, 1f
+  jr $2
+  jr $3
+  jr $4
+  jr $5
+  jr $6
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+#######################################
+### bne tests below
+
+## bne skips beq
+  bne $1, $0, 1f
+  beq $0, $0, 2f
+  beq $0, $0, 3f
+  beq $0, $0, 4f
+  beq $0, $0, 5f
+  beq $0, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## bne skips bne
+  bne $1, $0, 1f
+  bne $1, $0, 2f
+  bne $1, $0, 3f
+  bne $1, $0, 4f
+  bne $1, $0, 5f
+  bne $1, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## bne skips j 
+  bne $1, $0, 1f
+  j 2f
+  j 3f
+  j 4f
+  j 5f
+  j 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## bne skips jal
+  bne $1, $0, 1f
+  jal 2f
+  jal 3f
+  jal 4f
+  jal 5f
+  jal 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## bne skips jr
+  addiu $2, $0, 2f
+  addiu $3, $0, 3f
+  addiu $4, $0, 4f
+  addiu $5, $0, 5f
+  addiu $6, $0, 6f
+  bne $1, $0, 1f
+  jr $2
+  jr $3
+  jr $4
+  jr $5
+  jr $6
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+#######################################
+### j tests below
+
+## j skips beq
+  j 1f
+  beq $0, $0, 2f
+  beq $0, $0, 3f
+  beq $0, $0, 4f
+  beq $0, $0, 5f
+  beq $0, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## j skips bne
+  j 1f
+  bne $1, $0, 2f
+  bne $1, $0, 3f
+  bne $1, $0, 4f
+  bne $1, $0, 5f
+  bne $1, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## j skips j 
+  j 1f
+  j 2f
+  j 3f
+  j 4f
+  j 5f
+  j 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## j skips jal
+  j 1f
+  jal 2f
+  jal 3f
+  jal 4f
+  jal 5f
+  jal 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## j skips jr
+  addiu $2, $0, 2f
+  addiu $3, $0, 3f
+  addiu $4, $0, 4f
+  addiu $5, $0, 5f
+  addiu $6, $0, 6f
+  j 1f
+  jr $2
+  jr $3
+  jr $4
+  jr $5
+  jr $6
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+#######################################
+### jal tests below
+
+## jal skips beq
+  jal 1f
+  beq $0, $0, 2f
+  beq $0, $0, 3f
+  beq $0, $0, 4f
+  beq $0, $0, 5f
+  beq $0, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## jal skips bne
+  jal 1f
+  bne $1, $0, 2f
+  bne $1, $0, 3f
+  bne $1, $0, 4f
+  bne $1, $0, 5f
+  bne $1, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## jal skips j 
+  jal 1f
+  j 2f
+  j 3f
+  j 4f
+  j 5f
+  j 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## jal skips jal
+  jal 1f
+  jal 2f
+  jal 3f
+  jal 4f
+  jal 5f
+  jal 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## jal skips jr
+  addiu $2, $0, 2f
+  addiu $3, $0, 3f
+  addiu $4, $0, 4f
+  addiu $5, $0, 5f
+  addiu $6, $0, 6f
+  jal 1f
+  jr $2
+  jr $3
+  jr $4
+  jr $5
+  jr $6
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+#######################################
+### jr tests below
+
+## jr skips beq
+  addiu $1, $0, 1f
+  jr $1
+  beq $0, $0, 2f
+  beq $0, $0, 3f
+  beq $0, $0, 4f
+  beq $0, $0, 5f
+  beq $0, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## jr skips bne
+  addiu $1, $0, 1f
+  jr $1
+  bne $1, $0, 2f
+  bne $1, $0, 3f
+  bne $1, $0, 4f
+  bne $1, $0, 5f
+  bne $1, $0, 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## jr skips j 
+  addiu $1, $0, 1f
+  jr $1
+  j 2f
+  j 3f
+  j 4f
+  j 5f
+  j 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## jr skips jal
+  addiu $1, $0, 1f
+  jr $1
+  jal 2f
+  jal 3f
+  jal 4f
+  jal 5f
+  jal 6f
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+## jr skips jr
+  addiu $2, $0, 2f
+  addiu $3, $0, 3f
+  addiu $4, $0, 4f
+  addiu $5, $0, 5f
+  addiu $6, $0, 6f
+  addiu $1, $0, 1f
+  jr $1
+  jr $2
+  jr $3
+  jr $4
+  jr $5
+  jr $6
+
+6:
+  should_not_execute
+5:
+  should_not_execute
+4:
+  should_not_execute
+3:
+  should_not_execute
+2:
+  should_not_execute
+1:
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+  should_execute
+
+test_complete:
+  j .
+
+
+---------- Expected state updates -----------
+r21 = 1
+r22 = 2
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r2 = 0x144
+r3 = 0x140
+r4 = 0x13C
+r5 = 0x138
+r6 = 0x134
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r2 = 0x298
+r3 = 0x294
+r4 = 0x290
+r5 = 0x28C
+r6 = 0x288
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r2 = 0x3EC
+r3 = 0x3E8
+r4 = 0x3E4
+r5 = 0x3E0
+r6 = 0x3DC
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+
+r31 = 0x408
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r31 = 0x448
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r31 = 0x488
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r31 = 0x4C8
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r2 = 0x540
+r3 = 0x53C
+r4 = 0x538
+r5 = 0x534
+r6 = 0x530
+r31 = 0x51C
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+
+r1 = 0x588
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r1 = 0x5CC
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r1 = 0x610
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r1 = 0x654
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+r2 = 0x6A8
+r3 = 0x6A4
+r4 = 0x6A0
+r5 = 0x69C
+r6 = 0x698
+r1 = 0x6AC
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+r21 = 1
+
+------------ Timeout cycle count ------------
+2150

@@ -1,0 +1,490 @@
+--------------- Initial state ---------------
+r1 = 1
+r2 = 2
+r3 = 3
+r4 = 0x3FFFFFFF
+r5 = 0x3F00FF00
+r6 = 0x00FF00FF
+r7 = 0x0F0F0F0F
+r8 = 0x20C4901E
+r9 = 0x00CDE000
+r10 = 0x08764000
+
+r11 = -1
+r12 = -2
+r13 = -3
+r14 = -4
+r15 = 0x80000000
+r16 = -65536
+r17 = -65537
+r18 = 0xFF000FFF
+r19 = 0xABCDEF12
+r20 = 0x98765432
+
+----------------- Test code -----------------
+
+addu $31, $0, $11
+addu $31, $0, $12
+addu $31, $0, $13
+addu $31, $0, $14
+addu $31, $0, $15
+addu $31, $0, $16
+addu $31, $0, $17
+addu $31, $0, $18
+addu $31, $0, $19
+addu $31, $0, $20
+
+addu $31, $1, $11
+addu $31, $1, $12
+addu $31, $1, $13
+addu $31, $1, $14
+addu $31, $1, $15
+addu $31, $1, $16
+addu $31, $1, $17
+addu $31, $1, $18
+addu $31, $1, $19
+addu $31, $1, $20
+
+addu $31, $2, $11
+addu $31, $2, $12
+addu $31, $2, $13
+addu $31, $2, $14
+addu $31, $2, $15
+addu $31, $2, $16
+addu $31, $2, $17
+addu $31, $2, $18
+addu $31, $2, $19
+addu $31, $2, $20
+
+addu $31, $3, $11
+addu $31, $3, $12
+addu $31, $3, $13
+addu $31, $3, $14
+addu $31, $3, $15
+addu $31, $3, $16
+addu $31, $3, $17
+addu $31, $3, $18
+addu $31, $3, $19
+addu $31, $3, $20
+
+addu $31, $4, $11
+addu $31, $4, $12
+addu $31, $4, $13
+addu $31, $4, $14
+addu $31, $4, $15
+addu $31, $4, $16
+addu $31, $4, $17
+addu $31, $4, $18
+addu $31, $4, $19
+addu $31, $4, $20
+
+addu $31, $5, $11
+addu $31, $5, $12
+addu $31, $5, $13
+addu $31, $5, $14
+addu $31, $5, $15
+addu $31, $5, $16
+addu $31, $5, $17
+addu $31, $5, $18
+addu $31, $5, $19
+addu $31, $5, $20
+
+addu $31, $6, $11
+addu $31, $6, $12
+addu $31, $6, $13
+addu $31, $6, $14
+addu $31, $6, $15
+addu $31, $6, $16
+addu $31, $6, $17
+addu $31, $6, $18
+addu $31, $6, $19
+addu $31, $6, $20
+
+addu $31, $7, $11
+addu $31, $7, $12
+addu $31, $7, $13
+addu $31, $7, $14
+addu $31, $7, $15
+addu $31, $7, $16
+addu $31, $7, $17
+addu $31, $7, $18
+addu $31, $7, $19
+addu $31, $7, $20
+
+addu $31, $8, $11
+addu $31, $8, $12
+addu $31, $8, $13
+addu $31, $8, $14
+addu $31, $8, $15
+addu $31, $8, $16
+addu $31, $8, $17
+addu $31, $8, $18
+addu $31, $8, $19
+addu $31, $8, $20
+
+addu $31, $9, $11
+addu $31, $9, $12
+addu $31, $9, $13
+addu $31, $9, $14
+addu $31, $9, $15
+addu $31, $9, $16
+addu $31, $9, $17
+addu $31, $9, $18
+addu $31, $9, $19
+addu $31, $9, $20
+
+addu $31, $10, $11
+addu $31, $10, $12
+addu $31, $10, $13
+addu $31, $10, $14
+addu $31, $10, $15
+addu $31, $10, $16
+addu $31, $10, $17
+addu $31, $10, $18
+addu $31, $10, $19
+addu $31, $10, $20
+
+addu $31, $11, $0
+addu $31, $11, $1
+addu $31, $11, $2
+addu $31, $11, $3
+addu $31, $11, $4
+addu $31, $11, $5
+addu $31, $11, $6
+addu $31, $11, $7
+addu $31, $11, $8
+addu $31, $11, $9
+addu $31, $11, $10
+
+addu $31, $12, $0
+addu $31, $12, $1
+addu $31, $12, $2
+addu $31, $12, $3
+addu $31, $12, $4
+addu $31, $12, $5
+addu $31, $12, $6
+addu $31, $12, $7
+addu $31, $12, $8
+addu $31, $12, $9
+addu $31, $12, $10
+
+addu $31, $13, $0
+addu $31, $13, $1
+addu $31, $13, $2
+addu $31, $13, $3
+addu $31, $13, $4
+addu $31, $13, $5
+addu $31, $13, $6
+addu $31, $13, $7
+addu $31, $13, $8
+addu $31, $13, $9
+addu $31, $13, $10
+
+addu $31, $14, $0
+addu $31, $14, $1
+addu $31, $14, $2
+addu $31, $14, $3
+addu $31, $14, $4
+addu $31, $14, $5
+addu $31, $14, $6
+addu $31, $14, $7
+addu $31, $14, $8
+addu $31, $14, $9
+addu $31, $14, $10
+
+addu $31, $15, $0
+addu $31, $15, $1
+addu $31, $15, $2
+addu $31, $15, $3
+addu $31, $15, $4
+addu $31, $15, $5
+addu $31, $15, $6
+addu $31, $15, $7
+addu $31, $15, $8
+addu $31, $15, $9
+addu $31, $15, $10
+
+addu $31, $16, $0
+addu $31, $16, $1
+addu $31, $16, $2
+addu $31, $16, $3
+addu $31, $16, $4
+addu $31, $16, $5
+addu $31, $16, $6
+addu $31, $16, $7
+addu $31, $16, $8
+addu $31, $16, $9
+addu $31, $16, $10
+
+addu $31, $17, $0
+addu $31, $17, $1
+addu $31, $17, $2
+addu $31, $17, $3
+addu $31, $17, $4
+addu $31, $17, $5
+addu $31, $17, $6
+addu $31, $17, $7
+addu $31, $17, $8
+addu $31, $17, $9
+addu $31, $17, $10
+
+addu $31, $18, $0
+addu $31, $18, $1
+addu $31, $18, $2
+addu $31, $18, $3
+addu $31, $18, $4
+addu $31, $18, $5
+addu $31, $18, $6
+addu $31, $18, $7
+addu $31, $18, $8
+addu $31, $18, $9
+addu $31, $18, $10
+
+addu $31, $19, $0
+addu $31, $19, $1
+addu $31, $19, $2
+addu $31, $19, $3
+addu $31, $19, $4
+addu $31, $19, $5
+addu $31, $19, $6
+addu $31, $19, $7
+addu $31, $19, $8
+addu $31, $19, $9
+addu $31, $19, $10
+
+addu $31, $20, $0
+addu $31, $20, $1
+addu $31, $20, $2
+addu $31, $20, $3
+addu $31, $20, $4
+addu $31, $20, $5
+addu $31, $20, $6
+addu $31, $20, $7
+addu $31, $20, $8
+addu $31, $20, $9
+addu $31, $20, $10
+
+---------- Expected state updates -----------
+r31 = 0xffffffff
+r31 = 0xfffffffe
+r31 = 0xfffffffd
+r31 = 0xfffffffc
+r31 = 0x80000000
+r31 = 0xffff0000
+r31 = 0xfffeffff
+r31 = 0xff000fff
+r31 = 0xabcdef12
+r31 = 0x98765432
+r31 = 0x00000000
+r31 = 0xffffffff
+r31 = 0xfffffffe
+r31 = 0xfffffffd
+r31 = 0x80000001
+r31 = 0xffff0001
+r31 = 0xffff0000
+r31 = 0xff001000
+r31 = 0xabcdef13
+r31 = 0x98765433
+r31 = 0x00000001
+r31 = 0x00000000
+r31 = 0xffffffff
+r31 = 0xfffffffe
+r31 = 0x80000002
+r31 = 0xffff0002
+r31 = 0xffff0001
+r31 = 0xff001001
+r31 = 0xabcdef14
+r31 = 0x98765434
+r31 = 0x00000002
+r31 = 0x00000001
+r31 = 0x00000000
+r31 = 0xffffffff
+r31 = 0x80000003
+r31 = 0xffff0003
+r31 = 0xffff0002
+r31 = 0xff001002
+r31 = 0xabcdef15
+r31 = 0x98765435
+r31 = 0x3ffffffe
+r31 = 0x3ffffffd
+r31 = 0x3ffffffc
+r31 = 0x3ffffffb
+r31 = 0xbfffffff
+r31 = 0x3ffeffff
+r31 = 0x3ffefffe
+r31 = 0x3f000ffe
+r31 = 0xebcdef11
+r31 = 0xd8765431
+r31 = 0x3f00feff
+r31 = 0x3f00fefe
+r31 = 0x3f00fefd
+r31 = 0x3f00fefc
+r31 = 0xbf00ff00
+r31 = 0x3effff00
+r31 = 0x3efffeff
+r31 = 0x3e010eff
+r31 = 0xeaceee12
+r31 = 0xd7775332
+r31 = 0x00ff00fe
+r31 = 0x00ff00fd
+r31 = 0x00ff00fc
+r31 = 0x00ff00fb
+r31 = 0x80ff00ff
+r31 = 0x00fe00ff
+r31 = 0x00fe00fe
+r31 = 0xffff10fe
+r31 = 0xacccf011
+r31 = 0x99755531
+r31 = 0x0f0f0f0e
+r31 = 0x0f0f0f0d
+r31 = 0x0f0f0f0c
+r31 = 0x0f0f0f0b
+r31 = 0x8f0f0f0f
+r31 = 0x0f0e0f0f
+r31 = 0x0f0e0f0e
+r31 = 0x0e0f1f0e
+r31 = 0xbadcfe21
+r31 = 0xa7856341
+r31 = 0x20c4901d
+r31 = 0x20c4901c
+r31 = 0x20c4901b
+r31 = 0x20c4901a
+r31 = 0xa0c4901e
+r31 = 0x20c3901e
+r31 = 0x20c3901d
+r31 = 0x1fc4a01d
+r31 = 0xcc927f30
+r31 = 0xb93ae450
+r31 = 0x00cddfff
+r31 = 0x00cddffe
+r31 = 0x00cddffd
+r31 = 0x00cddffc
+r31 = 0x80cde000
+r31 = 0x00cce000
+r31 = 0x00ccdfff
+r31 = 0xffcdefff
+r31 = 0xac9bcf12
+r31 = 0x99443432
+r31 = 0x08763fff
+r31 = 0x08763ffe
+r31 = 0x08763ffd
+r31 = 0x08763ffc
+r31 = 0x88764000
+r31 = 0x08754000
+r31 = 0x08753fff
+r31 = 0x07764fff
+r31 = 0xb4442f12
+r31 = 0xa0ec9432
+r31 = 0xffffffff
+r31 = 0x00000000
+r31 = 0x00000001
+r31 = 0x00000002
+r31 = 0x3ffffffe
+r31 = 0x3f00feff
+r31 = 0x00ff00fe
+r31 = 0x0f0f0f0e
+r31 = 0x20c4901d
+r31 = 0x00cddfff
+r31 = 0x08763fff
+r31 = 0xfffffffe
+r31 = 0xffffffff
+r31 = 0x00000000
+r31 = 0x00000001
+r31 = 0x3ffffffd
+r31 = 0x3f00fefe
+r31 = 0x00ff00fd
+r31 = 0x0f0f0f0d
+r31 = 0x20c4901c
+r31 = 0x00cddffe
+r31 = 0x08763ffe
+r31 = 0xfffffffd
+r31 = 0xfffffffe
+r31 = 0xffffffff
+r31 = 0x00000000
+r31 = 0x3ffffffc
+r31 = 0x3f00fefd
+r31 = 0x00ff00fc
+r31 = 0x0f0f0f0c
+r31 = 0x20c4901b
+r31 = 0x00cddffd
+r31 = 0x08763ffd
+r31 = 0xfffffffc
+r31 = 0xfffffffd
+r31 = 0xfffffffe
+r31 = 0xffffffff
+r31 = 0x3ffffffb
+r31 = 0x3f00fefc
+r31 = 0x00ff00fb
+r31 = 0x0f0f0f0b
+r31 = 0x20c4901a
+r31 = 0x00cddffc
+r31 = 0x08763ffc
+r31 = 0x80000000
+r31 = 0x80000001
+r31 = 0x80000002
+r31 = 0x80000003
+r31 = 0xbfffffff
+r31 = 0xbf00ff00
+r31 = 0x80ff00ff
+r31 = 0x8f0f0f0f
+r31 = 0xa0c4901e
+r31 = 0x80cde000
+r31 = 0x88764000
+r31 = 0xffff0000
+r31 = 0xffff0001
+r31 = 0xffff0002
+r31 = 0xffff0003
+r31 = 0x3ffeffff
+r31 = 0x3effff00
+r31 = 0x00fe00ff
+r31 = 0x0f0e0f0f
+r31 = 0x20c3901e
+r31 = 0x00cce000
+r31 = 0x08754000
+r31 = 0xfffeffff
+r31 = 0xffff0000
+r31 = 0xffff0001
+r31 = 0xffff0002
+r31 = 0x3ffefffe
+r31 = 0x3efffeff
+r31 = 0x00fe00fe
+r31 = 0x0f0e0f0e
+r31 = 0x20c3901d
+r31 = 0x00ccdfff
+r31 = 0x08753fff
+r31 = 0xff000fff
+r31 = 0xff001000
+r31 = 0xff001001
+r31 = 0xff001002
+r31 = 0x3f000ffe
+r31 = 0x3e010eff
+r31 = 0xffff10fe
+r31 = 0x0e0f1f0e
+r31 = 0x1fc4a01d
+r31 = 0xffcdefff
+r31 = 0x07764fff
+r31 = 0xabcdef12
+r31 = 0xabcdef13
+r31 = 0xabcdef14
+r31 = 0xabcdef15
+r31 = 0xebcdef11
+r31 = 0xeaceee12
+r31 = 0xacccf011
+r31 = 0xbadcfe21
+r31 = 0xcc927f30
+r31 = 0xac9bcf12
+r31 = 0xb4442f12
+r31 = 0x98765432
+r31 = 0x98765433
+r31 = 0x98765434
+r31 = 0x98765435
+r31 = 0xd8765431
+r31 = 0xd7775332
+r31 = 0x99755531
+r31 = 0xa7856341
+r31 = 0xb93ae450
+r31 = 0x99443432
+r31 = 0xa0ec9432
+
+------------ Timeout cycle count ------------
+2430

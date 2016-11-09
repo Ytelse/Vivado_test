@@ -1,0 +1,157 @@
+--------------- Initial state ---------------
+r1 = 3
+r2 = 10
+r3 = 23
+r4 = 8
+r5 = 4
+r6 = 26
+r7 = 25
+r8 = 5
+r9 = 0
+r10 = 1
+r11 = 2
+r12 = 13
+r13 = 16
+r14 = 18
+r15 = 17
+r16 = 14
+r17 = 12
+r18 = 15
+r19 = 19
+r20 = 22
+r21 = 21
+r22 = 20
+r23 = 29
+r24 = 27
+r25 = 6
+r26 = 9
+r27 = 7
+r28 = 24
+r29 = 30
+r30 = 29
+r31 = 28
+----------------- Test code -----------------
+
+  sw $0, 0($0)
+
+  #######################################
+  ## Test forwarding from correct stage.
+
+  addu $1, $1, $1        # r1 = 3 + 3 = 6
+  addu $1, $25, $25      # r1 = 6 + 6 = 12
+  bne $1, $17, test_fail
+  nop
+  nop
+  nop
+  nop
+
+  addu $1, $8, $8        # r1 = 5 + 5 = 10
+  addu $1, $2, $2        # r1 = 10 + 10 = 20
+  bne $22, $1, test_fail
+  nop
+  nop
+  nop
+  nop
+
+  addu $1, $9, $11       # r1 = 0 + 2 = 2
+  nop
+  addu $1, $11, $1       # r1 = 2 + 2 = 4
+  bne $1, $5, test_fail
+  nop
+  nop
+  nop
+  nop
+
+  addu $1, $5, $0        # r1 = 4 + 0 = 4
+  nop
+  addu $1, $5, $5        # r1 = 4 + 4 = 8
+  bne $4, $1, test_fail
+  nop
+  nop
+  nop
+  nop
+
+  addu $1, $21, $8       # r1 = 21 + 5 = 26
+  addu $1, $27, $26      # r1 = 7 + 9 = 16
+  nop
+  bne $1, $13, test_fail
+  nop
+  nop
+  nop
+  nop
+
+  addu $1, $14, $12      # r1 = 18 + 13 = 31
+  addu $1, $27, $27      # r1 = 7 + 7 = 14
+  nop
+  bne $16, $1, test_fail
+  nop
+  nop
+  nop
+  nop
+
+  addu $1, $9, $9        # r1 = 0 + 0 = 0
+  addu $1, $17, $17      # r1 = 12 + 12 = 24
+  addu $1, $10, $10      # r1 = 1 + 1 = 2
+  bne $1, $11, test_fail
+  nop
+  nop
+  nop
+  nop
+
+  addu $1, $6, $6        # r1 = 26 + 26 = 52
+  addu $1, $8, $8        # r1 = 5 + 5 = 10
+  addu $1, $22, $4       # r1 = 20 + 8 = 28
+  bne $31, $1, test_fail
+  nop
+  nop
+  nop
+  nop
+
+
+test_success:
+  sw $0, 1($0)
+  j .
+  nop
+  nop
+  nop
+  nop
+
+test_fail:
+  sw $0, 0($0)
+  j .
+
+
+---------- Expected state updates -----------
+
+dmem_word[0] = 0
+
+r1 = 6
+r1 = 12
+
+r1 = 10
+r1 = 20
+
+r1 = 2
+r1 = 4
+
+r1 = 4
+r1 = 8
+
+r1 = 26
+r1 = 16
+
+r1 = 31
+r1 = 14
+
+r1 = 0
+r1 = 24
+r1 = 2
+
+r1 = 52
+r1 = 10
+r1 = 28
+
+dmem_word[1] = 0
+
+------------ Timeout cycle count ------------
+860

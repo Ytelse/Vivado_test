@@ -1,0 +1,225 @@
+--------------- Initial state ---------------
+dmem_word[1] = 17
+dmem_word[5] = 82
+r1 = 1
+----------------- Test code -----------------
+
+## Do not flush branch target instruction
+  beq $0, $0, 1f
+1:
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+  bne $1, $0, 1f
+1:
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+  j 1f
+1:
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+  jal 1f
+1:
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+  addiu $10, $0, 1f
+  jr $10
+1:
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+  beq $0, $0, 1f
+1:
+  lw $3, 1($0)
+  lw $3, 1($0)
+  lw $3, 1($0)
+
+  bne $1, $0, 1f
+1:
+  lw $3, 1($0)
+  lw $3, 1($0)
+  lw $3, 1($0)
+
+  j 1f
+1:
+  lw $3, 1($0)
+  lw $3, 1($0)
+  lw $3, 1($0)
+
+  jal 1f
+1:
+  lw $3, 1($0)
+  lw $3, 1($0)
+  lw $3, 1($0)
+
+  addiu $10, $0, 1f
+  jr $10
+1:
+  lw $3, 1($0)
+  lw $3, 1($0)
+  lw $3, 1($0)
+
+
+  beq $0, $0, 1f
+1:
+  beq $0, $0, 1f
+  lui $5, 8
+1:
+
+  bne $1, $0, 1f
+1:
+  bne $1, $0, 1f
+  lui $5, 8
+1:
+
+  j 1f
+1:
+  j 1f
+  lui $5, 8
+1:
+
+  jal 1f
+1:
+  jal 1f
+  lui $5, 8
+1:
+
+  addiu $10, $0, 1f
+  addiu $11, $0, 2f
+  jr $10
+1:
+  jr $11
+  lui $5, 8
+2:
+
+  ## Test no glithces
+  addu $2, $1, $0
+  beq $2, $0, test_fail
+  addiu $5, $0, 5
+  addiu $5, $0, 5
+  addiu $5, $0, 5
+
+  beq $2, $0, test_fail
+  addu $2, $0, $0
+  lw $5, 5($0)
+  lw $5, 5($0)
+  lw $5, 5($0)
+
+  addu $7, $1, $0
+  bne $0, $0, test_fail
+  sw $5, 5($0)
+  sw $5, 5($0)
+  sw $5, 5($0)
+
+  bne $0, $0, test_fail
+  addu $7, $1, $0
+  j 1f
+  addiu $8, $0, 77
+  addiu $8, $0, 77
+
+1:
+  addu $7, $1, $0
+  bne $0, $0, test_fail
+  nop
+  j 1f
+  addiu $8, $0, 77
+  addiu $8, $0, 77
+
+1:
+  addu $7, $1, $0
+  bne $0, $0, test_fail
+  nop
+  nop
+  j test_complete
+  addiu $8, $0, 77
+  addiu $8, $0, 77
+
+
+test_complete:
+  j .
+
+test_fail:
+  sw $0, 5($0)
+  j test_fail
+
+---------- Expected state updates -----------
+dmem_word[0] = 0
+dmem_word[0] = 0
+dmem_word[0] = 0
+
+dmem_word[0] = 0
+dmem_word[0] = 0
+dmem_word[0] = 0
+
+dmem_word[0] = 0
+dmem_word[0] = 0
+dmem_word[0] = 0
+
+r31 = 0x34
+dmem_word[0] = 0
+dmem_word[0] = 0
+dmem_word[0] = 0
+
+r10 = 0x48
+dmem_word[0] = 0
+dmem_word[0] = 0
+dmem_word[0] = 0
+
+r3 = 17
+r3 = 17
+r3 = 17
+
+r3 = 17
+r3 = 17
+r3 = 17
+
+r3 = 17
+r3 = 17
+r3 = 17
+
+r31 = 0x88
+r3 = 17
+r3 = 17
+r3 = 17
+
+r10 = 0x9c
+r3 = 17
+r3 = 17
+r3 = 17
+
+r31 = 0xd0
+r31 = 0xd4
+
+r10 = 0xe4
+r11 = 0xec
+
+r2 = 1
+r5 = 5
+r5 = 5
+r5 = 5
+
+r2 = 0
+r5 = 82
+r5 = 82
+r5 = 82
+
+r7 = 1
+dmem_word[5] = 82
+dmem_word[5] = 82
+dmem_word[5] = 82
+
+r7 = 1
+r7 = 1
+r7 = 1
+
+
+------------ Timeout cycle count ------------
+1080

@@ -1,0 +1,291 @@
+--------------- Initial state ---------------
+
+----------------- Test code -----------------
+
+## This test relies on a working branch-to-self j-instruction.
+
+  sw $0, 0($0)
+  addu $1, $0, $0
+
+  jal lab1
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+.align 3
+lab1:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab2
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+.align 3
+lab3:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab4
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+.align 3
+lab2:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab3
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+.align 3
+lab6:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab7
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  .align 3
+lab5:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab6
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  .align 3
+lab4:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab5
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+.align 3
+lab8:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+.align 3
+test_complete:
+  ## Rely on "j" for branch to self, as jal would create an unknown number of
+  ## writes to register 31 (until the test idle time is reached).
+  j test_complete
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+
+.section .final_16_instructions
+sw $0, 0($0)
+sw $0, 0($0)
+.align 3
+lab7:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab8
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+
+---------- Expected state updates -----------
+dmem_word[0] = 0
+r1 = 0
+
+r31 = 0xC
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 0x78
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 0x13C
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 0xE0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 0x21C
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 0x1E0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 0x1A4
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 0xFE0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+------------ Timeout cycle count ------------
+730

@@ -1,0 +1,93 @@
+--------------- Initial state ---------------
+
+----------------- Test code -----------------
+
+  jal test_start
+
+test_complete:
+  j .
+
+lab4:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal test_complete
+
+lab3:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab4
+
+lab2:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab3
+
+lab1:
+  addu $1, $0, $0
+  jal lab2
+lab0:
+  jal lab1
+
+test_start:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jal lab0
+
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+.section .final_16_instructions
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+---------- Expected state updates -----------
+r31 = 4
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 92
+r31 = 68
+r1 = 0
+r31 = 64
+r1 = 0
+r1 = 0
+r31 = 56
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 44
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r31 = 28
+
+------------ Timeout cycle count ------------
+450

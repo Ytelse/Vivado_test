@@ -1,0 +1,426 @@
+--------------- Initial state ---------------
+
+r1 = 0
+r2 = 0
+r3 = 0
+r4 = 0
+r5 = 0
+r6 = 0
+r7 = 0
+r8 = 0
+r9 = 0
+r10 = 0
+r11 = 0
+r12 = 0
+r13 = 0
+r14 = 0
+r15 = 0
+r16 = 0
+r17 = 0
+r18 = 0
+r19 = 0
+r20 = 0
+r21 = 0
+r22 = 0
+r23 = 0
+r24 = 0
+r25 = 0
+r26 = 0
+r27 = 0
+r28 = 0
+r29 = 0
+r30 = 0
+r31 = 0
+
+dmem_word[0] = 1
+
+----------------- Test code -----------------
+
+.macro should_not_execute
+       sw $0, 77($0)
+.endm
+
+  ## Test should_not_execute first
+  should_not_execute
+
+  ## Then comes the actual test.
+  lw $1, 0($0)
+  beq $1, $2, test_fail
+  nop
+  nop
+  nop
+  nop
+
+  lw $3, 0($0)
+  addu $1, $1, $1
+  beq $3, $2, test_fail
+  nop
+  nop
+  nop
+  nop
+
+  lw $4, 0($0)
+  bne $4, $2, 1f
+  j test_fail
+  j test_fail
+  j test_fail
+  j test_fail
+
+1:
+  lw $5, 0($0)
+  addu $1, $1, $1
+  bne $5, $2, 1f
+  j test_fail
+  j test_fail
+  j test_fail
+  j test_fail
+
+1:
+  lw $6, 0($0)
+  addu $6, $6, $6
+  addu $6, $6, $6
+  addu $6, $6, $6
+  addu $6, $6, $6
+  addu $6, $6, $6
+
+  lw $7, 0($0)
+  sw $7, 0($7)
+  sw $7, 0($7)
+  sw $7, 0($7)
+  sw $7, 0($7)
+
+1:
+  lw $8, 0($0)
+  sll $8, $8, 1
+  sll $8, $8, 1
+  sll $8, $8, 1
+  sll $8, $8, 1
+  sll $8, $8, 1
+
+test_complete:
+  j .
+
+test_fail:
+  should_not_execute
+  j test_fail
+  ## Ensure that any double-jumps will land in an invalid zone.
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+  should_not_execute
+
+---------- Expected state updates -----------
+
+dmem_word[77] = 0
+
+r1 = 1
+r3 = 1
+
+r1 = 2
+r4 = 1
+
+r5 = 1
+r1 = 4
+
+r6 = 1
+r6 = 2
+r6 = 4
+r6 = 8
+r6 = 16
+r6 = 32
+
+r7 = 1
+dmem_word[1] = 1
+dmem_word[1] = 1
+dmem_word[1] = 1
+dmem_word[1] = 1
+
+r8 = 1
+r8 = 2
+r8 = 4
+r8 = 8
+r8 = 16
+r8 = 32
+
+------------ Timeout cycle count ------------
+660

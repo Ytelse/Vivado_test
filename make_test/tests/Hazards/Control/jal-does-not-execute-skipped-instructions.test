@@ -1,0 +1,60 @@
+--------------- Initial state ---------------
+
+----------------- Test code -----------------
+
+jal skip0
+skip0:
+  jal skip1
+  addu $2, $0, $0
+
+skip1:
+  jal skip2
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip2:
+  jal skip3
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip3:
+  jal skip4
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip4:
+  jal skip5
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip5:
+  jal skip6
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip6:
+  addu $1, $0, $0
+
+---------- Expected state updates -----------
+
+r31 = 4
+r31 = 8
+r31 = 0x10
+r31 = 0x1C
+r31 = 0x2C
+r31 = 0x40
+r31 = 0x58
+r1 = 0
+
+------------ Timeout cycle count ------------
+310

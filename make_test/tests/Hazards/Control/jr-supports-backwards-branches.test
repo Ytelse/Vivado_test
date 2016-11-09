@@ -1,0 +1,92 @@
+--------------- Initial state ---------------
+
+r31 = 0x4
+r30 = 0x8
+r29 = 0x1c
+r28 = 0x2c
+r27 = 0x38
+r26 = 0x40
+r25 = 0x44
+
+----------------- Test code -----------------
+
+  jr $25 # test_start
+
+test_complete:
+  jr $31 # test_complete
+
+lab4:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jr $31 #test_complete
+
+lab3:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jr $30 # lab4
+
+lab2:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jr $29 # lab3
+
+lab1:
+  addu $1, $0, $0
+  jr $28 # lab2
+lab0:
+  jr $27 # lab1
+
+test_start:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  jr $26 # lab0
+
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+.section .final_16_instructions
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+---------- Expected state updates -----------
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+------------ Timeout cycle count ------------
+430

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2016.2 (64-bit)
+# SW Build 1577090 on Thu Jun  2 16:32:35 MDT 2016
+# IP Build 1577682 on Fri Jun  3 12:00:54 MDT 2016
+# Start of session at: Tue Nov  8 16:24:26 2016
+# Process ID: 25349
+# Current directory: /home/shomeb/u/ulrichji/Documents/dmpro/upload_test/UploadTest/UploadTest.runs/synth_1
+# Command line: vivado -log sw_btn_led.vds -mode batch -messageDb vivado.pb -notrace -source sw_btn_led.tcl
+# Log file: /home/shomeb/u/ulrichji/Documents/dmpro/upload_test/UploadTest/UploadTest.runs/synth_1/sw_btn_led.vds
+# Journal file: /home/shomeb/u/ulrichji/Documents/dmpro/upload_test/UploadTest/UploadTest.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source sw_btn_led.tcl -notrace

@@ -1,0 +1,83 @@
+--------------- Initial state ---------------
+
+----------------- Test code -----------------
+lui $1, 0
+lui $1, 1
+lui $1, 2
+lui $1, 3
+lui $1, 4
+lui $1, 5
+lui $1, 6
+lui $1, 7
+lui $1, 8
+lui $1, 9
+lui $1, 10
+lui $1, 11
+lui $1, 12
+lui $1, 13
+lui $1, 14
+lui $1, 15
+
+lui $1, 0x8000
+lui $1, 0xc000
+lui $1, 0xe000
+lui $1, 0xf000
+lui $1, 0xf800
+lui $1, 0xfc00
+lui $1, 0xfe00
+lui $1, 0xff00
+lui $1, 0xff80
+lui $1, 0xffc0
+lui $1, 0xffe0
+lui $1, 0xfff0
+lui $1, 0xfff8
+lui $1, 0xfffc
+lui $1, 0xfffe
+lui $1, 0xffff
+
+lui $1, 0x0aa0
+lui $1, 0x5555
+lui $1, 0xAAAA
+lui $1, 0x0F0F
+
+---------- Expected state updates -----------
+
+r1 = 0x00000000
+r1 = 0x00010000
+r1 = 0x00020000
+r1 = 0x00030000
+r1 = 0x00040000
+r1 = 0x00050000
+r1 = 0x00060000
+r1 = 0x00070000
+r1 = 0x00080000
+r1 = 0x00090000
+r1 = 0x000a0000
+r1 = 0x000b0000
+r1 = 0x000c0000
+r1 = 0x000d0000
+r1 = 0x000e0000
+r1 = 0x000f0000
+r1 = 0x80000000
+r1 = 0xc0000000
+r1 = 0xe0000000
+r1 = 0xf0000000
+r1 = 0xf8000000
+r1 = 0xfc000000
+r1 = 0xfe000000
+r1 = 0xff000000
+r1 = 0xff800000
+r1 = 0xffc00000
+r1 = 0xffe00000
+r1 = 0xfff00000
+r1 = 0xfff80000
+r1 = 0xfffc0000
+r1 = 0xfffe0000
+r1 = 0xffff0000
+r1 = 0x0aa00000
+r1 = 0x55550000
+r1 = 0xAAAA0000
+r1 = 0x0F0F0000
+
+------------ Timeout cycle count ------------
+590

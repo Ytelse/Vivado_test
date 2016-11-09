@@ -1,0 +1,85 @@
+--------------- Initial state ---------------
+r2 = 1
+
+----------------- Test code -----------------
+
+  bne $2, $0, test_start
+
+test_complete:
+  bne $2, $0, test_complete
+
+lab4:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  bne $2, $0, test_complete
+
+lab3:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  bne $2, $0, lab4
+
+lab2:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  bne $2, $0, lab3
+
+lab1:
+  addu $1, $0, $0
+  bne $2, $0, lab2
+lab0:
+  bne $2, $0, lab1
+
+test_start:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  bne $2, $0, lab0
+
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+.section .final_16_instructions
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+---------- Expected state updates -----------
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+------------ Timeout cycle count ------------
+490

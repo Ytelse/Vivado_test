@@ -1,0 +1,783 @@
+--------------- Initial state ---------------
+r1 = 0xF
+r2 = 0xFF
+r3 = 0xFFF
+r4 = 0xFFFF
+r5 = 0xFFFFF
+r6 = 0xFFFFFF
+r7 = 0xFFFFFFF
+r8 = 0xFFFFFFFF
+r9 = 0x8
+r10 = 0x80
+r11 = 0x800
+r12 = 0x8000
+r13 = 0x80000
+r14 = 0x800000
+r15 = 0x8000000
+r16 = 0x80000000
+
+r31 = 0xF
+r30 = 0xFF
+r29 = 0xFFF
+r28 = 0xFFFF
+r27 = 0xFFFFF
+r26 = 0xFFFFFF
+r25 = 0xFFFFFFF
+r24 = 0xFFFFFFFF
+r23 = 0x8
+r22 = 0x80
+r21 = 0x800
+r20 = 0x8000
+r19 = 0x80000
+r18 = 0x800000
+r17 = 0x8000000
+
+----------------- Test code -----------------
+
+.macro should_not_execute
+       addu $2, $0, $0
+.endm
+.macro should_execute
+       addu $16, $0, $0
+.endm
+
+bne $1, $31, test_failure
+should_execute
+
+bne $2, $30, test_failure
+should_execute
+
+bne $3, $29, test_failure
+should_execute
+
+bne $4, $28, test_failure
+should_execute
+
+bne $5, $27, test_failure
+should_execute
+
+bne $6, $26, test_failure
+should_execute
+
+bne $7, $25, test_failure
+should_execute
+
+bne $8, $24, test_failure
+should_execute
+
+bne $9, $23, test_failure
+should_execute
+
+bne $10, $22, test_failure
+should_execute
+
+bne $11, $21, test_failure
+should_execute
+
+bne $12, $20, test_failure
+should_execute
+
+bne $13, $19, test_failure
+should_execute
+
+bne $14, $18, test_failure
+should_execute
+
+bne $15, $17, test_failure
+should_execute
+
+bne $1, $0, 1f
+should_not_execute
+1:
+should_execute
+bne $1, $1, test_failure
+should_execute
+bne $1, $2, 1f
+should_not_execute
+1:
+should_execute
+bne $1, $3, 1f
+should_not_execute
+1:
+should_execute
+bne $1, $4, 1f
+should_not_execute
+1:
+should_execute
+bne $1, $5, 1f
+should_not_execute
+1:
+should_execute
+bne $1, $6, 1f
+should_not_execute
+1:
+should_execute
+bne $1, $7, 1f
+should_not_execute
+1:
+should_execute
+bne $1, $8, 1f
+should_not_execute
+1:
+should_execute
+
+bne $2, $0, 1f
+should_not_execute
+1:
+should_execute
+bne $2, $1, 1f
+should_not_execute
+1:
+should_execute
+bne $2, $2, test_failure
+should_execute
+bne $2, $3, 1f
+should_not_execute
+1:
+should_execute
+bne $2, $4, 1f
+should_not_execute
+1:
+should_execute
+bne $2, $5, 1f
+should_not_execute
+1:
+should_execute
+bne $2, $6, 1f
+should_not_execute
+1:
+should_execute
+bne $2, $7, 1f
+should_not_execute
+1:
+should_execute
+bne $2, $8, 1f
+should_not_execute
+1:
+should_execute
+
+bne $3, $0, 1f
+should_not_execute
+1:
+should_execute
+bne $3, $1, 1f
+should_not_execute
+1:
+should_execute
+bne $3, $2, 1f
+should_not_execute
+1:
+should_execute
+bne $3, $3, test_failure
+should_execute
+bne $3, $4, 1f
+should_not_execute
+1:
+should_execute
+bne $3, $5, 1f
+should_not_execute
+1:
+should_execute
+bne $3, $6, 1f
+should_not_execute
+1:
+should_execute
+bne $3, $7, 1f
+should_not_execute
+1:
+should_execute
+bne $3, $8, 1f
+should_not_execute
+1:
+should_execute
+
+bne $4, $0, 1f
+should_not_execute
+1:
+should_execute
+bne $4, $1, 1f
+should_not_execute
+1:
+should_execute
+bne $4, $2, 1f
+should_not_execute
+1:
+should_execute
+bne $4, $3, 1f
+should_not_execute
+1:
+should_execute
+bne $4, $4, test_failure
+should_execute
+bne $4, $5, 1f
+should_not_execute
+1:
+should_execute
+bne $4, $6, 1f
+should_not_execute
+1:
+should_execute
+bne $4, $7, 1f
+should_not_execute
+1:
+should_execute
+bne $4, $8, 1f
+should_not_execute
+1:
+should_execute
+
+bne $5, $0, 1f
+should_not_execute
+1:
+should_execute
+bne $5, $1, 1f
+should_not_execute
+1:
+should_execute
+bne $5, $2, 1f
+should_not_execute
+1:
+should_execute
+bne $5, $3, 1f
+should_not_execute
+1:
+should_execute
+bne $5, $4, 1f
+should_not_execute
+1:
+should_execute
+bne $5, $5, test_failure
+should_execute
+bne $5, $6, 1f
+should_not_execute
+1:
+should_execute
+bne $5, $7, 1f
+should_not_execute
+1:
+should_execute
+bne $5, $8, 1f
+should_not_execute
+1:
+should_execute
+
+bne $6, $0, 1f
+should_not_execute
+1:
+should_execute
+bne $6, $1, 1f
+should_not_execute
+1:
+should_execute
+bne $6, $2, 1f
+should_not_execute
+1:
+should_execute
+bne $6, $3, 1f
+should_not_execute
+1:
+should_execute
+bne $6, $4, 1f
+should_not_execute
+1:
+should_execute
+bne $6, $5, 1f
+should_not_execute
+1:
+should_execute
+bne $6, $6, test_failure
+should_execute
+bne $6, $7, 1f
+should_not_execute
+1:
+should_execute
+bne $6, $8, 1f
+should_not_execute
+1:
+should_execute
+
+bne $7, $0, 1f
+should_not_execute
+1:
+should_execute
+bne $7, $1, 1f
+should_not_execute
+1:
+should_execute
+bne $7, $2, 1f
+should_not_execute
+1:
+should_execute
+bne $7, $3, 1f
+should_not_execute
+1:
+should_execute
+bne $7, $4, 1f
+should_not_execute
+1:
+should_execute
+bne $7, $5, 1f
+should_not_execute
+1:
+should_execute
+bne $7, $6, 1f
+should_not_execute
+1:
+should_execute
+bne $7, $7, test_failure
+should_execute
+bne $7, $8, 1f
+should_not_execute
+1:
+should_execute
+
+bne $8, $0, 1f
+should_not_execute
+1:
+should_execute
+bne $8, $1, 1f
+should_not_execute
+1:
+should_execute
+bne $8, $2, 1f
+should_not_execute
+1:
+should_execute
+bne $8, $3, 1f
+should_not_execute
+1:
+should_execute
+bne $8, $4, 1f
+should_not_execute
+1:
+should_execute
+bne $8, $5, 1f
+should_not_execute
+1:
+should_execute
+bne $8, $6, 1f
+should_not_execute
+1:
+should_execute
+bne $8, $7, 1f
+should_not_execute
+1:
+should_execute
+bne $8, $8, test_failure
+should_execute
+
+bne $9, $9, test_failure
+should_execute
+bne $9, $10, 1f
+should_not_execute
+1:
+should_execute
+bne $9, $11, 1f
+should_not_execute
+1:
+should_execute
+bne $9, $12, 1f
+should_not_execute
+1:
+should_execute
+bne $9, $13, 1f
+should_not_execute
+1:
+should_execute
+bne $9, $14, 1f
+should_not_execute
+1:
+should_execute
+bne $9, $15, 1f
+should_not_execute
+1:
+should_execute
+bne $9, $16, 1f
+should_not_execute
+1:
+should_execute
+
+bne $10, $9, 1f
+should_not_execute
+1:
+should_execute
+bne $10, $10, test_failure
+should_execute
+bne $10, $11, 1f
+should_not_execute
+1:
+should_execute
+bne $10, $12, 1f
+should_not_execute
+1:
+should_execute
+bne $10, $13, 1f
+should_not_execute
+1:
+should_execute
+bne $10, $14, 1f
+should_not_execute
+1:
+should_execute
+bne $10, $15, 1f
+should_not_execute
+1:
+should_execute
+bne $10, $16, 1f
+should_not_execute
+1:
+should_execute
+
+bne $11, $9, 1f
+should_not_execute
+1:
+should_execute
+bne $11, $10, 1f
+should_not_execute
+1:
+should_execute
+bne $11, $11, test_failure
+should_execute
+bne $11, $12, 1f
+should_not_execute
+1:
+should_execute
+bne $11, $13, 1f
+should_not_execute
+1:
+should_execute
+bne $11, $14, 1f
+should_not_execute
+1:
+should_execute
+bne $11, $15, 1f
+should_not_execute
+1:
+should_execute
+bne $11, $16, 1f
+should_not_execute
+1:
+should_execute
+
+bne $12, $9, 1f
+should_not_execute
+1:
+should_execute
+bne $12, $10, 1f
+should_not_execute
+1:
+should_execute
+bne $12, $11, 1f
+should_not_execute
+1:
+should_execute
+bne $12, $12, test_failure
+should_execute
+bne $12, $13, 1f
+should_not_execute
+1:
+should_execute
+bne $12, $14, 1f
+should_not_execute
+1:
+should_execute
+bne $12, $15, 1f
+should_not_execute
+1:
+should_execute
+bne $12, $16, 1f
+should_not_execute
+1:
+should_execute
+
+bne $13, $9, 1f
+should_not_execute
+1:
+should_execute
+bne $13, $10, 1f
+should_not_execute
+1:
+should_execute
+bne $13, $11, 1f
+should_not_execute
+1:
+should_execute
+bne $13, $12, 1f
+should_not_execute
+1:
+should_execute
+bne $13, $13, test_failure
+should_execute
+bne $13, $14, 1f
+should_not_execute
+1:
+should_execute
+bne $13, $15, 1f
+should_not_execute
+1:
+should_execute
+bne $13, $16, 1f
+should_not_execute
+1:
+should_execute
+
+bne $14, $9, 1f
+should_not_execute
+1:
+should_execute
+bne $14, $10, 1f
+should_not_execute
+1:
+should_execute
+bne $14, $11, 1f
+should_not_execute
+1:
+should_execute
+bne $14, $12, 1f
+should_not_execute
+1:
+should_execute
+bne $14, $13, 1f
+should_not_execute
+1:
+should_execute
+bne $14, $14, test_failure
+should_execute
+bne $14, $15, 1f
+should_not_execute
+1:
+should_execute
+bne $14, $16, 1f
+should_not_execute
+1:
+should_execute
+
+bne $15, $9, 1f
+should_not_execute
+1:
+should_execute
+bne $15, $10, 1f
+should_not_execute
+1:
+should_execute
+bne $15, $11, 1f
+should_not_execute
+1:
+should_execute
+bne $15, $12, 1f
+should_not_execute
+1:
+should_execute
+bne $15, $13, 1f
+should_not_execute
+1:
+should_execute
+bne $15, $14, 1f
+should_not_execute
+1:
+should_execute
+bne $15, $15, test_failure
+should_execute
+bne $15, $16, 1f
+should_not_execute
+1:
+should_execute
+
+bne $16, $9, 1f
+should_not_execute
+1:
+should_execute
+bne $16, $10, 1f
+should_not_execute
+1:
+should_execute
+bne $16, $11, 1f
+should_not_execute
+1:
+should_execute
+bne $16, $12, 1f
+should_not_execute
+1:
+should_execute
+bne $16, $13, 1f
+should_not_execute
+1:
+should_execute
+bne $16, $14, 1f
+should_not_execute
+1:
+should_execute
+bne $16, $15, 1f
+should_not_execute
+1:
+should_execute
+bne $16, $16, test_failure
+should_execute
+
+
+test_complete:
+  beq $0, $0, test_complete
+
+
+test_failure:
+  should_not_execute
+
+
+---------- Expected state updates -----------
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+
+
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+r16 = 0
+
+------------ Timeout cycle count ------------
+4450

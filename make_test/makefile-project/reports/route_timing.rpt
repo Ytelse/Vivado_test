@@ -1,0 +1,22 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Thu Oct 27 16:12:10 2016
+| Host         : dmlab05 running 64-bit Ubuntu 16.04.1 LTS
+| Command      : report_timing -sort_by group -max_paths 5 -path_type summary -file /home/shomeb/u/ulrichji/Documents/dmpro/makefile-project/reports/route_timing.rpt
+| Design       : sw_btn_led
+| Device       : 7a35t-csg324
+| Speed File   : -1  PRODUCTION 1.14 2014-09-11
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Startpoint                     Endpoint                       Slack(ns)     
+----------------------------------------------------------------------------
+btn[2]                         led[2]                         inf           
+btn[0]                         led[0]                         inf           
+btn[1]                         led[1]                         inf           
+btn[3]                         led[3]                         inf           
+
+
+

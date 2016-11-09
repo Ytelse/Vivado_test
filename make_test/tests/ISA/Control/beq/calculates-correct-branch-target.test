@@ -1,0 +1,281 @@
+--------------- Initial state ---------------
+
+----------------- Test code -----------------
+
+  sw $0, 0($0)
+  addu $1, $0, $0
+
+  beq $0, $0, lab1
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+.align 3
+lab1:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  beq $0, $0, lab2
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+.align 3
+lab3:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  beq $0, $0, lab4
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+.align 3
+lab2:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  beq $0, $0, lab3
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+.align 3
+lab6:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  beq $0, $0, lab7
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+
+.align 3
+lab5:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  beq $0, $0, lab6
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+
+.align 3
+lab4:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  beq $0, $0, lab5
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+lab8:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+test_complete:
+  beq $0, $0, test_complete
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+  sw $0, 0($0)
+
+
+.section .final_16_instructions
+sw $0, 0($0)
+sw $0, 0($0)
+lab7:
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  addu $1, $0, $0
+  beq $0, $0, lab8
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+  nop
+
+---------- Expected state updates -----------
+dmem_word[0] = 0
+r1 = 0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+r1 = 0
+
+------------ Timeout cycle count ------------
+810

@@ -1,0 +1,1 @@
+../../mips-proc-exercises/sim-tests/scripts/elab_tests.sh

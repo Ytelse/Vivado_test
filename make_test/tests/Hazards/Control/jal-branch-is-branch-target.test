@@ -1,0 +1,132 @@
+--------------- Initial state ---------------
+
+----------------- Test code -----------------
+
+## This test relies on a working branch-to-self j-instruction.
+
+sw $0, 0($0)
+addu $1, $0, $0
+
+jal lab1
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+lab1:
+  jal lab2
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+lab3:
+  jal lab4
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+lab2:
+  jal lab3
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+lab6:
+  jal lab7
+lab5:
+  jal lab6
+lab4:
+  jal lab5
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+lab8:
+  addu $1, $0, $0
+test_complete:
+  ## Rely on "j" for branch to self, as jal would create an unknown number of
+  ## writes to register 31 (until the test idle time is reached).
+  j test_complete
+
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+
+
+.section .final_16_instructions
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+sw $0, 0($0)
+lab7:
+  jal lab8
+
+---------- Expected state updates -----------
+dmem_word[0] = 0
+r1 = 0
+
+r31 = 12
+r31 = 64
+r31 = 148
+r31 = 112
+r31 = 200
+r31 = 196
+r31 = 192
+r31 = 4096
+
+r1 = 0
+
+------------ Timeout cycle count ------------
+340

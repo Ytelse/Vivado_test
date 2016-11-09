@@ -1,0 +1,82 @@
+Copyright 1986-2016 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2016.2 (lin64) Build 1577090 Thu Jun  2 16:32:35 MDT 2016
+| Date         : Mon Nov  7 14:59:37 2016
+| Host         : dmlab05 running 64-bit Ubuntu 16.04.1 LTS
+| Command      : report_control_sets -verbose -file TopModule_control_sets_placed.rpt
+| Design       : TopModule
+| Device       : xc7a35t
+--------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Number of unique control sets                            |    29 |
+| Unused register locations in slices containing registers |    87 |
++----------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              81 |           43 |
+| No           | No                    | Yes                    |              22 |            7 |
+| No           | Yes                   | No                     |              28 |           18 |
+| Yes          | No                    | No                     |              84 |           28 |
+| Yes          | No                    | Yes                    |              41 |           15 |
+| Yes          | Yes                   | No                     |              65 |           27 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++---------------------+-------------------------------------------------------------------------------------+---------------------------------------------------------------------------+------------------+----------------+
+|     Clock Signal    |                                    Enable Signal                                    |                              Set/Reset Signal                             | Slice Load Count | Bel Load Count |
++---------------------+-------------------------------------------------------------------------------------+---------------------------------------------------------------------------+------------------+----------------+
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_transact_inst/s_state[3]_i_1__0_n_0           | input_module_inst/usb_serial_inst/usb_init_inst/s_rxgoodpacket9_out       |                3 |              4 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_packet_inst/FSM_sequential_s_state[3]_i_1_n_0 | input_module_inst/usb_serial_inst/usb_init_inst/s_rxgoodpacket9_out       |                4 |              4 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_transact_inst/s_state_reg[3]_1[0]             | input_module_inst/usb_serial_inst/usb_init_inst/s_rxgoodpacket9_out       |                3 |              4 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_control_inst/s_answerlen_0                    | input_module_inst/usb_serial_inst/usb_control_inst/s_answerlen[4]_i_1_n_0 |                2 |              4 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_control_inst/s_answerlen_0                    |                                                                           |                2 |              4 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_control_inst/s_ctlrequest                     |                                                                           |                1 |              4 |
+|  ULPI_clk_IBUF_BUFG |                                                                                     | input_module_inst/usb_serial_inst/usb_init_inst/v_clrtimer1               |                2 |              5 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_packet_inst/crc5_buf[4]_i_2_n_0               | input_module_inst/usb_serial_inst/usb_packet_inst/crc5_buf[4]_i_1_n_0     |                1 |              5 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_control_inst/s_answerptr[5]_i_1_n_0           |                                                                           |                3 |              6 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_transact_inst/wait_count[8]_i_2_n_0           | input_module_inst/usb_serial_inst/usb_transact_inst/wait_count[8]_i_1_n_0 |                3 |              6 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/ulpi_wrapper_inst/data_q                                          | ULPI_rst_IBUF                                                             |                2 |              7 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_control_inst/s_addr[6]_i_1_n_0                | input_module_inst/usb_serial_inst/usb_init_inst/s_rxgoodpacket9_out       |                2 |              7 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_control_inst/s_ctlparam[7]_i_2_n_0            | input_module_inst/usb_serial_inst/usb_control_inst/s_ctlparam[7]_i_1_n_0  |                2 |              8 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/ulpi_wrapper_inst/tx_buffer_q                                     | ULPI_rst_IBUF                                                             |                2 |              8 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_init_inst/s_dataout_reg[7]                    |                                                                           |                3 |              8 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/ulpi_wrapper_inst/tx_buffer_q[1][7]_i_1_n_0                       | ULPI_rst_IBUF                                                             |                1 |              8 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/ulpi_wrapper_inst/utmi_data_q                                     | ULPI_rst_IBUF                                                             |                6 |              8 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_packet_inst/PHY_TXVALID0                      | input_module_inst/usb_serial_inst/usb_packet_inst/PHY_DATAOUT[7]_i_1_n_0  |                2 |              8 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_control_inst/E[0]                             |                                                                           |                3 |              9 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/ulpi_wrapper_inst/state_q[1]_i_1_n_0                              | ULPI_rst_IBUF                                                             |                4 |             10 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_init_inst/E[0]                                |                                                                           |                2 |             10 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_transact_inst/s_txbuf_tail                    |                                                                           |                5 |             10 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_transact_inst/s_bufptr_reg[0]_0               |                                                                           |                4 |             11 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/q_rxbuf_read1                                     |                                                                           |                2 |             11 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_transact_inst/s_rxbuf_head                    |                                                                           |                3 |             11 |
+|  ULPI_clk_IBUF_BUFG | input_module_inst/usb_serial_inst/usb_packet_inst/crc16_buf[15]_i_2_n_0             | input_module_inst/usb_serial_inst/usb_packet_inst/crc16_buf[15]_i_1_n_0   |                5 |             15 |
+|  ULPI_clk_IBUF_BUFG |                                                                                     | ULPI_rst_IBUF                                                             |                7 |             22 |
+|  ULPI_clk_IBUF_BUFG |                                                                                     | input_module_inst/usb_serial_inst/usb_init_inst/s_rxgoodpacket9_out       |               16 |             23 |
+|  ULPI_clk_IBUF_BUFG |                                                                                     |                                                                           |               43 |             81 |
++---------------------+-------------------------------------------------------------------------------------+---------------------------------------------------------------------------+------------------+----------------+
+
+

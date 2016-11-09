@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7a35tftg256-2" LaunchTime="1478691085">
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="RDI-RDI" Name="Generator.vdi"/>
+  <File Type="BG-DRC" Name="Generator.drc"/>
+  <File Type="BG-BGN" Name="Generator.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="Generator.sysdef"/>
+  <File Type="BITSTR-MMI" Name="Generator.mmi"/>
+  <File Type="BITSTR-BMM" Name="Generator_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="Generator.nky"/>
+  <File Type="BITSTR-RBT" Name="Generator.rbt"/>
+  <File Type="BITSTR-MSK" Name="Generator.msk"/>
+  <File Type="BG-BIN" Name="Generator.bin"/>
+  <File Type="BG-BIT" Name="Generator.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="Generator_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="Generator_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="Generator_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="Generator_postroute_physopt_bb.dcp"/>
+  <File Type="ROUTE-CLK" Name="Generator_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="Generator_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="Generator_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="Generator_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="Generator_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="Generator_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="Generator_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="Generator_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="Generator_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="Generator_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="Generator_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="Generator_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-PB" Name="Generator_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="Generator_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="Generator_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="Generator_routed.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="Generator_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="Generator_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="Generator_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="Generator_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="Generator_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="Generator_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="Generator_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="Generator_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="Generator_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="Generator_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="Generator_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="Generator_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="Generator_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="Generator_placed.dcp"/>
+  <File Type="PWROPT-TIMING" Name="Generator_timing_summary_pwropted.rpt"/>
+  <File Type="PWROPT-DRC" Name="Generator_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="Generator_pwropt.dcp"/>
+  <File Type="OPT-TIMING" Name="Generator_timing_summary_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="Generator.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="Generator_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="Generator_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="Generator_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="Generator_timing_summary_init.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="Generator_postroute_physopt.dcp"/>
+  <File Type="PA-TCL" Name="Generator.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/Generator.vhd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="Generator"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/constraints.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2016"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

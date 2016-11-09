@@ -1,0 +1,55 @@
+--------------- Initial state ---------------
+r2 = 1
+
+----------------- Test code -----------------
+
+bne $2, $0, skip0
+skip0:
+  bne $2, $0, skip1
+  addu $2, $0, $0
+
+skip1:
+  bne $2, $0, skip2
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip2:
+  bne $2, $0, skip3
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip3:
+  bne $2, $0, skip4
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip4:
+  bne $2, $0, skip5
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip5:
+  bne $2, $0, skip6
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip6:
+  addu $1, $0, $0
+test_complete:
+  bne $2, $0, test_complete
+
+---------- Expected state updates -----------
+r1 = 0
+
+------------ Timeout cycle count ------------
+380

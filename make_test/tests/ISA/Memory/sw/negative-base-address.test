@@ -1,0 +1,62 @@
+--------------- Initial state ---------------
+r1 = -3
+r2 = -4
+r3 = -100
+r4 = -1023
+r5 = -1024
+r6 = -32767
+
+----------------- Test code -----------------
+
+sw $0, 3($1)
+nop
+nop
+sw $0, 4($1)
+sw $0, 4($2)
+nop
+nop
+
+sw $0, 100($3)
+sw $0, 101($3)
+nop
+nop
+sw $0, 200($3)
+sw $0, 255($3)
+nop
+nop
+
+sw $0, 1023($4)
+sw $0, 1024($4)
+nop
+nop
+sw $0, 2046($4)
+
+sw $0, 1024($5)
+nop
+nop
+sw $0, 2047($5)
+
+sw $0, 32767($6)
+
+---------- Expected state updates -----------
+
+dmem_word[0] = 0
+dmem_word[1] = 0
+dmem_word[0] = 0
+
+dmem_word[0] = 0
+dmem_word[1] = 0
+dmem_word[100] = 0
+dmem_word[155] = 0
+
+dmem_word[0] = 0
+dmem_word[1] = 0
+dmem_word[1023] = 0
+
+dmem_word[0] = 0
+dmem_word[1023] = 0
+
+dmem_word[0] = 0
+
+------------ Timeout cycle count ------------
+350

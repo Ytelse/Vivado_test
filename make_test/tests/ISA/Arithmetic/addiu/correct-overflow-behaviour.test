@@ -1,0 +1,26 @@
+--------------- Initial state ---------------
+r1 = 0x80000000
+r2 = 0x80007FFF
+
+r3 = 0x7FFFFFFF
+r4 = 0x7FFF8001
+
+----------------- Test code -----------------
+
+addiu $31, $1, -1
+addiu $31, $1, -32768
+addiu $31, $2, -32768
+addiu $31, $3, 1
+addiu $31, $3, 32767
+addiu $31, $4, 32767
+
+---------- Expected state updates -----------
+r31 = 0x7fffffff
+r31 = 0x7fff8000
+r31 = 0x7fffffff
+r31 = 0x80000000
+r31 = 0x80007ffe
+r31 = 0x80000000
+
+------------ Timeout cycle count ------------
+290

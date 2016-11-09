@@ -1,0 +1,418 @@
+--------------- Initial state ---------------
+dmem_word[0] = 50
+r1 = 3
+r2 = 10
+r3 = 23
+r4 = 8
+r5 = 4
+r6 = 26
+r7 = 25
+r8 = 5
+r9 = 0
+r10 = 1
+r11 = 2
+r12 = 13
+r13 = 16
+r14 = 18
+r15 = 17
+r16 = 14
+r17 = 12
+r18 = 15
+r19 = 19
+r20 = 22
+r21 = 21
+r22 = 20
+r23 = 29
+r24 = 0x80000
+r25 = 6
+r26 = 9
+r27 = 7
+r28 = 24
+r29 = 30
+r30 = 29
+r31 = 28
+
+dmem_word[28] = 7
+
+----------------- Test code -----------------
+
+  ## No forwarding to ID stage.
+  addu $1, $0, $0
+  nop
+  nop
+  nop
+  nop
+  beq $1, $1, 1f
+  lui $2, 8              # r2 = 0x80000 - skipped, should not forward.
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+
+1:
+  beq $24, $2, test_fail # Should not be equal
+  beq $24, $2, test_fail
+  beq $24, $2, test_fail
+  beq $24, $2, test_fail
+  beq $24, $2, test_fail
+  addiu $2, $0, 0        # r2 = 0 + 0 = 0
+  nop
+  nop
+  nop
+  nop
+  beq $2, $1, 1f
+  slt $2, $0, $20        # r2 = 0 < 22 = 1 - skipped, should not forward
+  slt $2, $0, $20
+  slt $2, $0, $20
+  slt $2, $0, $20
+  slt $2, $0, $20
+  slt $2, $0, $20
+
+1:
+  beq $2, $10, test_fail # Should not be equal
+  beq $2, $10, test_fail # Should not be equal
+  beq $2, $10, test_fail # Should not be equal
+  beq $2, $10, test_fail # Should not be equal
+  beq $2, $10, test_fail # Should not be equal
+  slt $3, $1, $2         # r3 = 0 < 0 = 0
+  addiu $2, $5, 0        # r2 = r5 = 4
+  nop
+  nop
+  nop
+  nop
+  beq $1, $3, 1f
+  sll $5, $4, 1          # r2 = 8 << 1 = 16 - skipped, should not forward
+  sll $5, $4, 1
+  sll $5, $4, 1
+  sll $5, $4, 1
+  sll $5, $4, 1
+  sll $5, $4, 1
+
+1:
+  bne $2, $5, test_fail  # Should be equal.
+  bne $2, $5, test_fail  # Should be equal.
+  bne $2, $5, test_fail  # Should be equal.
+  bne $2, $5, test_fail  # Should be equal.
+  bne $2, $5, test_fail  # Should be equal.
+  addiu $4, $0, 2
+  nop
+  nop
+  nop
+  nop
+  bne $1, $4, 1f
+  lw $2, 0($0)           # r2 = dmem_word[0] = 50 - skipped, should not forward
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+
+1:
+  bne $2, $5, test_fail  # Should be equal.
+  bne $2, $5, test_fail  # Should be equal.
+  bne $2, $5, test_fail  # Should be equal.
+  bne $2, $5, test_fail  # Should be equal.
+  bne $2, $5, test_fail  # Should be equal.
+
+  addiu $15, $0, jr_target # Load r15 with next jr branch target.
+  sll $5, $4, 1
+  nop
+  nop
+  nop
+  nop
+  bne $4, $5, 1f
+  addiu $15, $0, test_fail        # r15 = test_fail - skipped, should not forward
+  addiu $15, $0, test_fail
+  addiu $15, $0, test_fail
+  addiu $15, $0, test_fail
+  addiu $15, $0, test_fail
+  addiu $15, $0, test_fail
+
+1:
+  jr $15
+  jr $15
+  jr $15
+  jr $15
+  jr $15
+jr_target:
+  addiu $6, $0, 1f
+  addu $7, $0, $31
+  nop
+  nop
+  nop
+  nop
+  jr $6
+  jal 1b                 # r31 = ... - skipped, should not be forwarded
+  jal 1b
+  jal 1b
+  jal 1b
+  jal 1b
+  jal 1b
+
+1:
+  bne $7, $31, test_fail # Should be equal
+  bne $7, $31, test_fail # Should be equal
+  bne $7, $31, test_fail # Should be equal
+  bne $7, $31, test_fail # Should be equal
+  bne $7, $31, test_fail # Should be equal
+
+  jal 1f
+  addu $2, $0, $0        # r2 = 0 + 0 = 0 - skipped, should not be forwarded.
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+1:
+  beq $2, $9, test_fail  # Should not be equal
+  beq $2, $9, test_fail  # Should not be equal
+  beq $2, $9, test_fail  # Should not be equal
+  beq $2, $9, test_fail  # Should not be equal
+  beq $2, $9, test_fail  # Should not be equal
+  addiu $31, $0, 28      # r31 = 28 - restore old value.
+
+
+  ## No forwarding to EX stage.
+  addu $1, $0, $0
+  nop
+  nop
+  nop
+  nop
+  beq $1, $1, 1f
+  lui $2, 8              # r2 = 0x80000 - skipped, should not forward.
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+  lui $2, 8
+
+1:
+  addu $3, $2, $2        # r3 = 4 + 4 = 8
+  addu $3, $2, $2        # r3 = 4 + 4 = 8
+  addu $3, $2, $2        # r3 = 4 + 4 = 8
+  addu $3, $2, $2        # r3 = 4 + 4 = 8
+  addu $3, $2, $2        # r3 = 4 + 4 = 8
+  addiu $2, $0, 0        # r2 = 0 + 0 = 0
+  nop
+  nop
+  nop
+  nop
+  beq $2, $1, 1f
+  slt $2, $0, $20        # r2 = 0 < 22 = 1 - skipped, should not forward
+  slt $2, $0, $20
+  slt $2, $0, $20
+  slt $2, $0, $20
+  slt $2, $0, $20
+  slt $2, $0, $20
+
+1:
+  slt $3, $1, $2         # r3 = 0 < 0 = 0
+  slt $3, $1, $2         # r3 = 0 < 0 = 0
+  slt $3, $1, $2         # r3 = 0 < 0 = 0
+  slt $3, $1, $2         # r3 = 0 < 0 = 0
+  slt $3, $1, $2         # r3 = 0 < 0 = 0
+  nop
+  nop
+  nop
+  nop
+  beq $1, $3, 1f
+  sll $5, $8, 1          # r2 = 5 << 1 = 10 - skipped, should not forward
+  sll $5, $8, 1
+  sll $5, $8, 1
+  sll $5, $8, 1
+  sll $5, $8, 1
+  sll $5, $8, 1
+
+1:
+  slt $3, $5, $8         # r3 = 4 < 5 = 1
+  slt $3, $5, $8         # r3 = 4 < 5 = 1
+  slt $3, $5, $8         # r3 = 4 < 5 = 1
+  slt $3, $5, $8         # r3 = 4 < 5 = 1
+  slt $3, $5, $8         # r3 = 4 < 5 = 1
+  addiu $4, $0, 2
+  nop
+  nop
+  nop
+  nop
+  bne $1, $4, 1f
+  lw $2, 0($0)           # r2 = dmem_word[0] = 50 - skipped, should not forward
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+  lw $2, 0($0)
+
+1:
+  addiu $11, $2, 3        # r11 = 0 + 3 = 3
+  addiu $11, $2, 3        # r11 = 0 + 3 = 3
+  addiu $11, $2, 3        # r11 = 0 + 3 = 3
+  addiu $11, $2, 3        # r11 = 0 + 3 = 3
+  addiu $11, $2, 3        # r11 = 0 + 3 = 3
+  sll $5, $4, 1
+  nop
+  nop
+  nop
+  nop
+  bne $4, $5, 1f
+  addiu $2, $0, 2        # r2 = 0 + 2 = 2 - skipped, should not forward
+  addiu $2, $0, 2
+  addiu $2, $0, 2
+  addiu $2, $0, 2
+  addiu $2, $0, 2
+  addiu $2, $0, 2
+
+1:
+  sw $11, 0($11)           # dmem_word[3] = 3
+  sw $11, 0($11)           # dmem_word[3] = 3
+  sw $11, 0($11)           # dmem_word[3] = 3
+  sw $11, 0($11)           # dmem_word[3] = 3
+  sw $11, 0($11)           # dmem_word[3] = 3
+  addiu $6, $0, 1f
+  nop
+  nop
+  nop
+  nop
+  jr $6
+  jal 1b                 # r31 = ... - skipped, should not be forwarded
+  jal 1b
+  jal 1b
+  jal 1b
+  jal 1b
+  jal 1b
+
+1:
+  lw $27, 0($31)         # r27 = dmem_word[28] = 7
+  lw $27, 0($31)         # r27 = dmem_word[28] = 7
+  lw $27, 0($31)         # r27 = dmem_word[28] = 7
+  lw $27, 0($31)         # r27 = dmem_word[28] = 7
+  lw $27, 0($31)         # r27 = dmem_word[28] = 7
+  jal 1f
+  addu $2, $0, $0        # r2 = 0 + 0 = 0 - skipped, should not be forwarded.
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+1:
+  sll $5, $11, 3          # r5 = 3 << 3 = 24
+  sll $5, $11, 3          # r5 = 3 << 3 = 24
+  sll $5, $11, 3          # r5 = 3 << 3 = 24
+  sll $5, $11, 3          # r5 = 3 << 3 = 24
+  sll $5, $11, 3          # r5 = 3 << 3 = 24
+  j test_complete
+  lui $2, 7
+  lui $2, 7
+  lui $2, 7
+  lui $2, 7
+  lui $2, 7
+  lui $2, 7
+
+test_complete:
+  j .
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+  addiu $2, $0, 0
+
+test_fail:
+  addiu $1, $0, 1
+  sw $1, 0($0)
+  j test_fail
+
+.section .final_16_instructions
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+
+---------- Expected state updates -----------
+r1 = 0
+
+r2 = 0
+
+r3 = 0
+r2 = 4
+
+r4 = 2
+
+r15 = 0x15C
+r5 = 4
+
+r6 = 0x190
+r7 = 28
+
+r31 = 0x1A8
+r31 = 28
+
+
+
+
+r1 = 0
+
+r3 = 8
+r3 = 8
+r3 = 8
+r3 = 8
+r3 = 8
+r2 = 0
+
+r3 = 0
+r3 = 0
+r3 = 0
+r3 = 0
+r3 = 0
+
+r3 = 1
+r3 = 1
+r3 = 1
+r3 = 1
+r3 = 1
+r4 = 2
+
+r11 = 3
+r11 = 3
+r11 = 3
+r11 = 3
+r11 = 3
+r5 = 4
+
+dmem_word[3] = 3
+dmem_word[3] = 3
+dmem_word[3] = 3
+dmem_word[3] = 3
+dmem_word[3] = 3
+r6 = 0x358
+
+r27 = 7
+r27 = 7
+r27 = 7
+r27 = 7
+r27 = 7
+r31 = 0x370
+
+r5 = 24
+r5 = 24
+r5 = 24
+r5 = 24
+r5 = 24
+
+------------ Timeout cycle count ------------
+1760

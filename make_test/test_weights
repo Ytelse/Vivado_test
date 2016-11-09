@@ -1,0 +1,26 @@
+tests/ISA/Arithmetic/addu 20
+tests/ISA/Arithmetic/addiu 20
+tests/ISA/Arithmetic/sll 20
+tests/ISA/Arithmetic/lui 20
+tests/ISA/Arithmetic/slt 20
+
+tests/ISA/Control/beq 20
+tests/ISA/Control/bne 20
+tests/ISA/Control/jal 20
+tests/ISA/Control/jr 20
+tests/ISA/Control/j 20
+
+tests/ISA/Memory/lw 50
+tests/ISA/Memory/sw 50
+
+tests/ISA/Arithmetic 30
+tests/ISA/Control 40
+tests/ISA/Memory 30
+
+tests/Hazards/Data 60
+tests/Hazards/Control 40
+
+tests/ISA 40
+tests/Hazards 35
+tests/Stalls 15
+tests/Flush 10

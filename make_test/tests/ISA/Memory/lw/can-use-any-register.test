@@ -1,0 +1,170 @@
+--------------- Initial state ---------------
+r1 = 30
+r2 =  28
+r3 =  26
+r4 =  24
+r5 =  22
+r6 =  20
+r7 =  18
+r8 =  16
+r9 =  14
+r10 =  12
+r11 =  10
+r12 =  8
+r13 =  6
+r14 =  4
+r15 =  2
+r16 =  1
+r17 =  3
+r18 =  5
+r19 =  7
+r20 =  9
+r21 =  11
+r22 =  13
+r23 =  15
+r24 =  17
+r25 =  19
+r26 =  21
+r27 =  23
+r28 =  25
+r29 =  27
+r30 =  29
+r31 =  31
+
+dmem_word[0] = 30
+dmem_word[1] = 28
+dmem_word[2] = 26
+dmem_word[3] = 24
+dmem_word[4] = 22
+dmem_word[5] = 20
+dmem_word[6] = 18
+dmem_word[7] = 16
+dmem_word[8] = 14
+dmem_word[9] =  12
+dmem_word[10] = 10
+dmem_word[11] = 8
+dmem_word[12] = 6
+dmem_word[13] = 4
+dmem_word[14] = 2
+dmem_word[15] = 1
+dmem_word[16] = 3
+dmem_word[17] = 5
+dmem_word[18] = 7
+dmem_word[19] = 9
+dmem_word[20] = 11
+dmem_word[21] = 13
+dmem_word[22] = 15
+dmem_word[23] = 17
+dmem_word[24] = 19
+dmem_word[25] = 21
+dmem_word[26] = 23
+dmem_word[27] = 25
+dmem_word[28] = 27
+dmem_word[29] = 29
+dmem_word[30] = 31
+dmem_word[31] = 0
+
+----------------- Test code -----------------
+
+lw $1, 0($0)
+nop
+lw $3, 0($2)
+nop
+lw $5, 0($4)
+nop
+lw $7, 0($6)
+nop
+lw $9, 0($8)
+nop
+lw $2, 0($1)
+nop
+lw $4, 0($3)
+nop
+lw $6, 0($5)
+nop
+lw $8, 0($7)
+nop
+lw $10, 0($9)
+nop
+lw $12, 0($11)
+nop
+lw $14, 0($13)
+nop
+lw $16, 0($15)
+nop
+lw $18, 0($17)
+nop
+nop
+lw $11, 0($10)
+nop
+lw $13, 0($12)
+nop
+lw $15, 0($14)
+nop
+lw $17, 0($16)
+nop
+lw $19, 0($18)
+nop
+lw $21, 0($20)
+nop
+lw $23, 0($22)
+nop
+lw $25, 0($24)
+nop
+lw $27, 0($26)
+nop
+lw $29, 0($28)
+nop
+lw $31, 0($30)
+nop
+lw $20, 0($19)
+nop
+lw $22, 0($21)
+nop
+lw $24, 0($23)
+nop
+lw $26, 0($25)
+nop
+lw $28, 0($27)
+nop
+lw $30, 0($29)
+nop
+lw $1, 0($31)
+
+---------- Expected state updates -----------
+
+r1 = 0x0000001e
+r3 = 0x0000001b
+r5 = 0x00000013
+r7 = 0x0000000b
+r9 = 0x00000003
+r2 = 0x0000001f
+r4 = 0x00000019
+r6 = 0x00000009
+r8 = 0x00000008
+r10 = 0x00000018
+r12 = 0x0000000a
+r14 = 0x00000012
+r16 = 0x0000001a
+r18 = 0x00000018
+r11 = 0x00000013
+r13 = 0x0000000a
+r15 = 0x00000007
+r17 = 0x00000017
+r19 = 0x00000013
+r21 = 0x0000000c
+r23 = 0x00000004
+r25 = 0x00000005
+r27 = 0x0000000d
+r29 = 0x00000015
+r31 = 0x0000001d
+r20 = 0x00000009
+r22 = 0x00000006
+r24 = 0x00000016
+r26 = 0x00000014
+r28 = 0x00000004
+r30 = 0x0000000d
+r1 = 0x0000001d
+
+------------ Timeout cycle count ------------
+550

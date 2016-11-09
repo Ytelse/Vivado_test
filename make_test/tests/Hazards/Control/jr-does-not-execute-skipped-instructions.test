@@ -1,0 +1,70 @@
+--------------- Initial state ---------------
+
+----------------- Test code -----------------
+
+addiu $31, $0, skip0
+jr $31
+skip0:
+  addiu $31, $0, skip1
+  jr $31
+  addu $2, $0, $0
+
+skip1:
+  addiu $31, $0, skip2
+  jr $31
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip2:
+  addiu $31, $0, skip3
+  jr $31
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip3:
+  addiu $31, $0, skip4
+  jr $31
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip4:
+  addiu $31, $0, skip5
+  jr $31
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip5:
+  addiu $31, $0, skip6
+  jr $31
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+  addu $2, $0, $0
+
+skip6:
+  addu $1, $0, $0
+  addiu $31, $0, test_complete
+test_complete:
+  jr $31
+
+---------- Expected state updates -----------
+r31 = 0x8
+r31 = 0x14
+r31 = 0x24
+r31 = 0x38
+r31 = 0x50
+r31 = 0x6c
+r31 = 0x8c
+r1 = 0
+r31 = 0x94
+
+------------ Timeout cycle count ------------
+390

@@ -1,0 +1,19 @@
+--------------- Initial state ---------------
+
+----------------- Test code -----------------
+
+lui $0, 1
+lui $0, 2
+lui $0, 3
+lui $0, 4
+lui $0, 5
+lui $0, 0xffff
+lui $0, 566
+lui $1, 1
+
+---------- Expected state updates -----------
+
+r1 = 0x10000
+
+------------ Timeout cycle count ------------
+310

@@ -1,0 +1,20 @@
+--------------- Initial state ---------------
+
+----------------- Test code -----------------
+
+jr $0
+addu $1, $0, $0
+addu $1, $0, $0
+addu $1, $0, $0
+addu $1, $0, $0
+addu $1, $0, $0
+addu $1, $0, $0
+addu $1, $0, $0
+addu $1, $0, $0
+addu $1, $0, $0
+addu $1, $0, $0
+
+---------- Expected state updates -----------
+
+------------ Timeout cycle count ------------
+250
